@@ -23,7 +23,7 @@ def auth_login_post():
     password = request.form.get('password')
     tuple_select = (username)
     sql = '''SELECT * FROM user WHERE username=%s'''
-    retour = mycursor.execute(sql, (username))
+    retour = mycursor.execute(sql, tuple_select)
     user = mycursor.fetchone()
     if user:
         mdp_ok = check_password_hash(user['password'], password)
