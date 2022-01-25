@@ -6,3 +6,8 @@ Semaine 1 :
 Travail de Jarod : Création de l'adresse mail puis du compte GitHub
 Travail de Nicolas : Création du compte PythonAnywhere
 Travail de Simon : Début de la création du script sql
+
+Semaine 2 :
+
+Mardi :
+Travail du groupe : Création du cahier des charges
