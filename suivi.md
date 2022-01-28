@@ -11,3 +11,7 @@ Semaine 2 :
 
 Mardi :
 Travail du groupe : Création du cahier des charges
+
+Vendredi :
+Nicolas et Jarod : Amélioration du cahier des charges
+Simon : Création du MCD
