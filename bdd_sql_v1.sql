@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS Ski;
-DROP TABLE IF EXISTS Type_ski;
+DROP TABLE IF EXISTS ski;
+DROP TABLE IF EXISTS type_ski;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS commande;
 DROP TABLE IF EXISTS ligne_commande;
@@ -10,7 +10,6 @@ CREATE TABLE ski(
    id_ski INT AUTO_INCREMENT,
    type_ski_id INT,
    longueur DECIMAL(8,2),
-   modele VARCHAR(50),
    fabricant VARCHAR(50),
    fournisseur VARCHAR(50),
    PRIMARY KEY(id_ski)
