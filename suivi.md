@@ -15,3 +15,11 @@ Travail du groupe : Création du cahier des charges
 Vendredi :
 Nicolas et Jarod : Amélioration du cahier des charges
 Simon : Création du MCD
+
+Semaine 3 :
+
+Jeudi :
+Travail du groupe : Amélioration du cahier des charges
+
+Vendredi :
+Travail du groupe : Création des données en tableau CSV 
