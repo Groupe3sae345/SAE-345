@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS ski;
-DROP TABLE IF EXISTS type_ski;
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS commande;
-DROP TABLE IF EXISTS ligne_commande;
 DROP TABLE IF EXISTS panier;
+DROP TABLE IF EXISTS ligne_commande;
+DROP TABLE IF EXISTS commande;
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS type_ski;
 DROP TABLE IF EXISTS etat;
+DROP TABLE IF EXISTS ski;
 
 CREATE TABLE ski(
    id_ski INT AUTO_INCREMENT,
@@ -13,6 +13,12 @@ CREATE TABLE ski(
    fabricant VARCHAR(50),
    fournisseur VARCHAR(50),
    PRIMARY KEY(id_ski)
+);
+
+CREATE TABLE etat(
+    id_etat INT AUTO_INCREMENT,
+    libelle VARCHAR(50),
+    PRIMARY KEY (id_etat)
 );
 
 CREATE TABLE type_ski(
@@ -59,15 +65,14 @@ CREATE TABLE panier(
     prix_unit DECIMAL(9,2),
     quantite INT,
     PRIMARY KEY (id_panier),
-    CONSTRAINT fk_panier_user FOREIGN KEY (user_id) REFERENCES user (id_panier),
+    CONSTRAINT fk_panier_user FOREIGN KEY (user_id) REFERENCES user(id_user),
     CONSTRAINT fk_panier_article FOREIGN KEY (article_id) REFERENCES Ski(id_ski)
-);
-
-CREATE TABLE etat(
-    id_etat INT AUTO_INCREMENT,
-    libelle VARCHAR(50),
-    PRIMARY KEY (id_etat)
 );
 
 LOAD DATA LOCAL INFILE 'type_ski.csv' INTO TABLE type_ski FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'etat.csv' INTO TABLE etat FIELDS TERMINATED BY ',';
+LOAD DATA LOCAL INFILE 'ski.csv' INTO TABLE ski FIELDS TERMINATED BY ',';
+
+SELECT * FROM type_ski;
+SELECT * FROM etat;
+SELECT * FROM ski;
