@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS ligne_commande;
 DROP TABLE IF EXISTS panier;
 DROP TABLE IF EXISTS etat;
 
-CREATE TABLE Ski(
+CREATE TABLE ski(
    id_ski INT AUTO_INCREMENT,
    type_ski_id INT,
    longueur DECIMAL(8,2),
@@ -16,7 +16,7 @@ CREATE TABLE Ski(
    PRIMARY KEY(id_ski)
 );
 
-CREATE TABLE Type_ski(
+CREATE TABLE type_ski(
    id_type_ski INT AUTO_INCREMENT,
    libelle VARCHAR(50),
    PRIMARY KEY(id_type_ski)
@@ -62,11 +62,13 @@ CREATE TABLE panier(
     PRIMARY KEY (id_panier),
     CONSTRAINT fk_panier_user FOREIGN KEY (user_id) REFERENCES user (id_panier),
     CONSTRAINT fk_panier_article FOREIGN KEY (article_id) REFERENCES Ski(id_ski)
-
-)
+);
 
 CREATE TABLE etat(
     id_etat INT AUTO_INCREMENT,
     libelle VARCHAR(50),
     PRIMARY KEY (id_etat)
-)
+);
+
+LOAD DATA LOCAL INFILE 'type_ski.csv' INTO TABLE type_ski FIELDS TERMINATED BY ',';
+LOAD DATA LOCAL INFILE 'etat.csv' INTO TABLE etat FIELDS TERMINATED BY ',';
