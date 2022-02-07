@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bdd_sql_v1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bdd_sql_v1.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/auth_security.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/auth_security.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,6 +92,8 @@
       <updated>1642751822567</updated>
       <workItem from="1642751825200" duration="3113000" />
       <workItem from="1643875368362" duration="2186000" />
+      <workItem from="1643965642372" duration="653000" />
+      <workItem from="1644217851013" duration="3277000" />
     </task>
     <servers />
   </component>

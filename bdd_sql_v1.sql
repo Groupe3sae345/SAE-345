@@ -30,7 +30,7 @@ CREATE TABLE type_ski(
 CREATE TABLE user(
     id_user INT AUTO_INCREMENT,
     username VARCHAR(50),
-    password VARCHAR(50),
+    password VARCHAR(255),
     est_actif tinyint(1),
     pseudo VARCHAR(50),
     email VARCHAR(50),
