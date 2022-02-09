@@ -79,17 +79,17 @@
                             <div class="card-body border-dark rounded">
                                 <a href="/client/article/details/{{ article.id }}">
                                 <h2 class="card-title">
-                                    <span style="color: #0b2e13">{{ article.nom }}</span><br>
-                                    {{ article.prix }}
+                                    <span style="color: #0b2e13">{{ article.nom_ski }}</span><br>
+                                    {{ article.prix_ski }}
                                     €
                                 </h2>
-                                <!--<div class="card-body">
-                                     {# {%  if article.image is not none %}
-                                        <img class="card-img-top rounded mx-auto d-block"  style="width:100px;height:100px"  src="{{ url_for('static', filename = 'images/' + article['image']) }}"  alt="image  de {{ article.nom }}" >
-                                    {% else %} <img class="card-img-top rounded mx-auto d-block"   style="width:100px;height:100px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="image  de {{ article.nom }}" >
-                                    {% endif %} #}
+                                <div class="card-body">
+                                     {# {%  if article.image is not none %} #}
+                                        <!-- <img class="card-img-top rounded mx-auto d-block"  style="width:100px;height:100px"  src="{#  {{ url_for('static', filename = 'images/' + article['image']) }}"  alt="image  de {{ article.nom }}"> #} -->
+                                    {# {% else %} #} <img class="card-img-top rounded mx-auto d-block"   style="width:100px;height:100px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="image  de {{ article.nom }}" >
+                                    {# {% endif %} #}
                                     <hr>
-                                </div>-->
+                                </div>
                                 </a>
                                 <div class="card-body">
                                         <form  action="/client/panier/add" method="post">

@@ -5,14 +5,34 @@ DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS type_ski;
 DROP TABLE IF EXISTS etat;
 DROP TABLE IF EXISTS ski;
+DROP TABLE IF EXiSTS fournisseur;
+DROP TABLE IF EXISTS fabricant;
+
+CREATE TABLE fabricant(
+    id_fabricant INT AUTO_INCREMENT,
+    nom_fabricant VARCHAR(50),
+    PRIMARY KEY (id_fabricant)
+);
+
+CREATE TABLE fournisseur(
+    id_fournisseur INT AUTO_INCREMENT,
+    nom_fournisseur VARCHAR(50),
+    PRIMARY KEY (id_fournisseur)
+);
 
 CREATE TABLE ski(
    id_ski INT AUTO_INCREMENT,
    type_ski_id INT,
    longueur DECIMAL(8,2),
-   fabricant VARCHAR(50),
-   fournisseur VARCHAR(50),
-   PRIMARY KEY(id_ski)
+   nom_ski VARCHAR(50),
+   prix_ski DECIMAL(9,2),
+   stock INT,
+   image VARCHAR(50),
+   fabricant_id INT,
+   fournisseur_id INT,
+   PRIMARY KEY(id_ski),
+   CONSTRAINT fk_ski_fabricant FOREIGN KEY (fabricant_id) REFERENCES fabricant (id_fabricant),
+   CONSTRAINT fk_ski_fournisseur FOREIGN KEY (fournisseur_id) REFERENCES fournisseur (id_fournisseur)
 );
 
 CREATE TABLE etat(
