@@ -8,15 +8,27 @@ from connexion_db import get_db
 client_article = Blueprint('client_article', __name__,
                         template_folder='templates')
 
+
 @client_article.route('/client/index')
+
+
 @client_article.route('/client/article/show')      # remplace /client
 def client_article_show():                                 # remplace client_index
     mycursor = get_db().cursor()
-    articles = []
-    types_articles = []
-    articles_panier = []
-    prix_total = None
+    sql = "select * from ski"
+    mycursor.execute(sql)
+    skis = mycursor.fetchall()
+    articles = skis
+    sql = "select * from type_ski"
+    mycursor.execute(sql)
+    type_ski = mycursor.fetchall()
+    types_articles = type_ski
+    sql = "select * , 10 as prix , concat('nomarticle',article_id) as nom from panier"
+    mycursor.execute(sql)
+    articles_panier = mycursor.fetchall()
+    prix_total = articles_panier
     return render_template('client/boutique/panier_article.html', articles=articles, articlesPanier=articles_panier, prix_total=prix_total, itemsFiltre=types_articles)
+
 
 @client_article.route('/client/article/details/<int:id>', methods=['GET'])
 def client_article_details(id):

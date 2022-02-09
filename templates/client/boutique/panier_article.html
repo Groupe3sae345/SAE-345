@@ -83,13 +83,13 @@
                                     {{ article.prix }}
                                     €
                                 </h2>
-                                <div class="card-body">
-                                     {%  if article.image is not none %}
+                                <!--<div class="card-body">
+                                     {# {%  if article.image is not none %}
                                         <img class="card-img-top rounded mx-auto d-block"  style="width:100px;height:100px"  src="{{ url_for('static', filename = 'images/' + article['image']) }}"  alt="image  de {{ article.nom }}" >
                                     {% else %} <img class="card-img-top rounded mx-auto d-block"   style="width:100px;height:100px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="image  de {{ article.nom }}" >
-                                    {% endif %}
+                                    {% endif %} #}
                                     <hr>
-                                </div>
+                                </div>-->
                                 </a>
                                 <div class="card-body">
                                         <form  action="/client/panier/add" method="post">
