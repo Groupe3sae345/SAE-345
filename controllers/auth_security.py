@@ -33,10 +33,10 @@ def auth_login_post():
         else:
             session['username'] = user['username']
             session['role'] = user['role']
-            session['user_id'] = user['idUser']
+            session['user_id'] = user['id_user']
             print(user['username'], user['role'])
             if user['role'] == 'ROLE_admin':
-                return redirect('/admin/commande/index')
+                return redirect('/admin/commande/show')
             else:
                 return redirect('/client/article/show')
     else:
@@ -65,7 +65,7 @@ def auth_signup_post():
     # ajouter un nouveau user
     password = generate_password_hash(password, method='sha256')
     tuple_insert = (username, password, email)
-    sql = '''INSERT INTO user VALUES (NULL, %s, %s, ROLE_Client, false,  %s, %s);'''
+    sql = '''INSERT INTO user VALUES (NULL, %s, %s, 'ROLE_client', 1, %s);'''
     mycursor.execute(sql, tuple_insert)
     get_db().commit()                    # position de cette ligne discutable !
     sql='''SELECT last_insert_id() AS last_insert_id;'''
