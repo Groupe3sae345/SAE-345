@@ -15,7 +15,7 @@ client_article = Blueprint('client_article', __name__,
 @client_article.route('/client/article/show')      # remplace /client
 def client_article_show():                                 # remplace client_index
     mycursor = get_db().cursor()
-    sql = "select * from ski"
+    sql = "select *, fabricant.nom_fabricant, type_ski.libelle from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id"
     mycursor.execute(sql)
     skis = mycursor.fetchall()
     articles = skis
@@ -33,7 +33,14 @@ def client_article_show():                                 # remplace client_ind
 @client_article.route('/client/article/details/<int:id>', methods=['GET'])
 def client_article_details(id):
     mycursor = get_db().cursor()
-    article=None
-    commentaires=None
-    commandes_articles=None
-    return render_template('client/boutique/article_details.html', article=article, commentaires=commentaires, commandes_articles=commandes_articles)
+    tuple_insert= (id)
+    sql = "select *, fabricant.nom_fabricant, type_ski.libelle, ski.image from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id where ski.id_ski=%s"
+    mycursor.execute(sql, tuple_insert)
+    skis = mycursor.fetchall()
+    article = skis
+    sql = "select * , 10 as prix , concat('nomarticle',article_id) as nom from panier"
+    mycursor.execute(sql)
+    articles_panier = mycursor.fetchall()
+    commandes_articles = articles_panier
+    return render_template('client/boutique/article_details.html', article=article, commandes_articles=commandes_articles)
+#commentaires=commentaires,

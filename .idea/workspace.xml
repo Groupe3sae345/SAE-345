@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.~lock.fournisseur.csv#" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bdd_sql_v1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bdd_sql_v1.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/suivi.md" beforeDir="false" afterPath="$PROJECT_DIR$/suivi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/client_article.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/client_article.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/client_panier.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/client_panier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ski.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ski.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/boutique/article_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/boutique/article_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/boutique/panier_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/boutique/panier_article.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.csv" beforeDir="false" afterPath="$PROJECT_DIR$/user.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
