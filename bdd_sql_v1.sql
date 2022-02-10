@@ -95,6 +95,8 @@ INSERT INTO user  (id_user, email, username, password, role, est_actif) VALUES (
 LOAD DATA LOCAL INFILE 'type_ski.csv' INTO TABLE type_ski FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'etat.csv' INTO TABLE etat FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'ski.csv' INTO TABLE ski FIELDS TERMINATED BY ',';
+LOAD DATA LOCAL INFILE 'fabricant.csv' INTO TABLE ski FIELDS TERMINATED BY ',';
+LOAD DATA LOCAL INFILE 'fournisseur.csv' INTO TABLE ski FIELDS TERMINATED BY ',';
 
 SELECT * FROM user;
 SELECT * FROM type_ski;
