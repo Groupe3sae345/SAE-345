@@ -73,7 +73,7 @@ CREATE TABLE ligne_commande(
     quantite INT,
     PRIMARY KEY (commande_id,article_id),
     CONSTRAINT fk_ligne_commande_commande FOREIGN KEY (commande_id) REFERENCES commande(id_commande),
-    CONSTRAINT fk_ligne_commande_article FOREIGN KEY (article_id) REFERENCES Ski(id_ski)
+    CONSTRAINT fk_ligne_commande_article FOREIGN KEY (article_id) REFERENCES ski(id_ski)
 );
 
 CREATE TABLE panier(
@@ -85,7 +85,7 @@ CREATE TABLE panier(
     quantite INT,
     PRIMARY KEY (id_panier),
     CONSTRAINT fk_panier_user FOREIGN KEY (user_id) REFERENCES user(id_user),
-    CONSTRAINT fk_panier_article FOREIGN KEY (article_id) REFERENCES Ski(id_ski)
+    CONSTRAINT fk_panier_article FOREIGN KEY (article_id) REFERENCES ski(id_ski)
 );
 
 LOAD DATA LOCAL INFILE 'user.csv' INTO TABLE user FIELDS TERMINATED BY ',';
