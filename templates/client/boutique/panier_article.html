@@ -27,7 +27,7 @@
                             <td>{{itemPanier.prix}}</td>
                             <td>{{ "{:,.2f} €".format((itemPanier.prix * itemPanier.quantite)) }}</td>
                             <td>
-                               {% if itemPanier.stock > 0 %}
+                               {% if itemPanier.stock is defined and itemPanier.stock > 0 %}
                                 <form action="/client/panier/add" style="display: inline-block;"  method="post">
                                         <input type="hidden" name="quantite" value="1">
                                         <input type="hidden" name="idArticle" value="{{ itemPanier.article_id }}">
@@ -77,30 +77,30 @@
                 {% for article in articles  %}
                         <div class="card col-4 mt-4">
                             <div class="card-body border-dark rounded">
-                                <a href="/client/article/details/{{ article.id }}">
+                                <a href="/client/article/details/{{ article.id_ski }}">
                                 <h2 class="card-title">
-                                    <span style="color: #0b2e13">{{ article.nom_ski }}</span><br>
+                                    <span style="color: #0b2e13">{{ article.nom_fabricant }}</span></h2>
+                                    <h6 style="color: #000000">{{ article.libelle }}</h6>
                                     {{ article.prix_ski }}
                                     €
-                                </h2>
+
                                 <div class="card-body">
                                      {%  if article.image is not none %}
-                                        <img class="card-img-top rounded mx-auto d-block"  style="width:100px;height:100px"  src="{{ url_for('static', filename = 'images/' + article.image) }}"  alt="image  de {{ article.nom }}">
-                                    {% else %} <img class="card-img-top rounded mx-auto d-block"   style="width:100px;height:100px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="image  de {{ article.nom }}" >
+                                        <img class="card-img-top rounded mx-auto d-block"  style="width:100px;height:100px"  src="{{ url_for('static', filename = 'images/' + article.image) }}"  alt="image  de {{ article.nom_fabricant }}">
+                                    {% else %} <img class="card-img-top rounded mx-auto d-block"   style="width:100px;height:100px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="image  de {{ article.nom_fabricant }}" >
                                      {% endif %}
                                     <hr>
                                 </div>
                                 </a>
                                 <div class="card-body">
                                         <form  action="/client/panier/add" method="post">
-                                            <input type="hidden" name="idArticle" value="{{ article.id }}">
+                                            <input type="hidden" name="idArticle" value="{{ article.id_ski }}">
                                             <button class="btn btn-success float-right">
                                                 <i class="fas fa-shopping-cart"></i>
                                                 Ajouter
                                              </button>
-
                                             <div class="input-group input-group-sm" style="width: 4rem !important;">
-                                                <input type="number" id="input-{{ article.id }}" step="1" min="0" max="{{ article.stock }}" class="form-control" style="width: 4rem !important;" value="1" name="quantite">
+                                                <input type="number" id="input-{{ article.id_ski }}" step="1" min="0" max="{{ article.stock }}" class="form-control" style="width: 4rem !important;" value="1" name="quantite">
                                             </div>
                                         </form>
                                 </div>
@@ -116,14 +116,14 @@
                                 <br>
                             {% if article.nb_notes is defined %}
                             {% if article.nb_notes > 1 %}
-                                 <a  href="/client/article/details/{{ article.id }}">
+                                 <a  href="/client/article/details/{{ article.id_ski }}">
                                     <span style="color: #3A7734"> note : {{  "{:,.1f}".format(article.moy_notes) }}</span>
                                  </a>
                             {% endif %}
                             {% endif %}
                             {% if article.nb_avis is defined %}
                             {% if article.nb_avis > 0 %}
-                                 <a href="/client/article/details/{{ article.id }}">
+                                 <a href="/client/article/details/{{ article.id_ski }}">
                                     <span style="color: #3A7734">({{ article.nb_avis }} avis)</span>
                                  </a>
                             {% endif %}

@@ -12,7 +12,28 @@ client_panier = Blueprint('client_panier', __name__,
 @client_panier.route('/client/panier/add', methods=['POST'])
 def client_panier_add():
     mycursor = get_db().cursor()
+    client_id = session['user_id']
+    id_article = request.form.get('idArticle')
+    quantite = request.form.get('quantite')
 
+    sql = "SELECT * FROM panier WHERE article_id = %s AND user_id=%s"
+    mycursor.execute(sql, (id_article, client_id))
+    article_panier = mycursor.fetchone()
+
+    mycursor.execute("SELECT * FROM ski WHERE id_ski = %s", (id_article))
+    article = mycursor.fetchone()
+
+    if not (article_panier is None) and article_panier['quantite'] >= 1:
+        tuple_update = (quantite, client_id, id_article)
+        sql = "alter table panier drop foreign key fk_panier_article;" \
+              "UPDATE panier SET quantite = quantite+%s WHERE user_id = %s AND article_id=%s"
+        mycursor.execute(sql, tuple_update)
+    else:
+        tuple_insert = (client_id, id_article, quantite)
+        sql = "INSERT INTO panier(user_id,article_id,quantite) VALUES (%s,%s,%s)"
+        mycursor.execute(sql, tuple_insert)
+
+    get_db().commit()
     return redirect('/client/article/show')
     #return redirect(url_for('client_index'))
 
