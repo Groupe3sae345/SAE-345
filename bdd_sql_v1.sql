@@ -102,5 +102,3 @@ SELECT * FROM etat;
 SELECT * FROM fournisseur;
 SELECT * FROM fabricant;
 SELECT * FROM ski;
-
-select fabricant.nom_fabricant, ski.longueur, ski.prix_ski, ski.image from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant

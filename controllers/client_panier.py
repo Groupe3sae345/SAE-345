@@ -60,42 +60,13 @@ def client_panier_delete_line():
     return redirect('/client/article/show')
     #return redirect(url_for('client_index'))
 
-@client_panier.route('/client/panier/filtre')
-def show_selec():
-    mycursor = get_db().cursor()
-    sql = "select fabricant.nom_fabricant, ski.*, type_ski.* from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on ski.type_ski_id = type_ski.id_type_ski"
-    list_param = []
-    condition_and=""
-    if "filter_word" in session or "filter_prix_min" in session or "filter_prix_max" in session or "filter_types" in session:
-        sql=sql+" where "
-    if "filter_word" in session:
-        sql=sql+"nom_fabricant like %s "
-        recherche="%" + session["filter_word"] + "%"
-        list_param.append(recherche)
-        condition_and="and "
-    if "filter_prix_min" in session or "filter_prix_max" in session:
-        sql=sql+condition_and+"prix_ski between %s and %s "
-        list_param.append(session["filter_prix_min"])
-        list_param.append(session["filter_prix_max"])
-        condition_and="and "
-    if "filter_types" in session:
-        sql=sql+condition_and+"("
-        last_item=session['filter_types'][-1]
-        for item in session['filter_types']:
-            sql=sql+"type_ski_id = %s "
-            if item != last_item:
-                sql=sql+"or "
-            list_param.append(item)
-        sql=sql+")"
-    sql=sql+";"
-    tuple_sql=tuple(list_param)
-    mycursor.execute(sql, tuple_sql)
-    ski=mycursor.fetchall()
-    print(ski)
-    return render_template('/client/boutique/_filtres.html', itemsFiltre=ski)
 
 @client_panier.route('/client/panier/filtre', methods=['POST'])
 def client_panier_filtre():
+    mycursor = get_db().cursor()
+    sql = "SELECT * FROM type_ski"
+    mycursor.execute(sql)
+    type_ski = mycursor.fetchall()
     filter_word = request.form.get('filter_word')
     filter_types = request.form.getlist('filter_types')
     filter_prix_min = request.form.get('filter_prix_min')

@@ -1,36 +1,38 @@
-<form method="post"  action="/client/panier/filtre"   style="display: inline-block">
-    <div class="form-group">
-        <input autocomplete="off" name="filter_word"  type="text" placeholder="Recherche" size="10" class="form-control"
-               value="{% if session['filter_word'] %}{{ session['filter_word'] }}{% endif %}"  >
-    </div>
-   {% if itemsFiltre is defined %}
-    <div class="form-group">
-        <h4>Types articles</h4>
-        {% for itemFiltre in itemsFiltre %}
-        <input type="checkbox" name="filter_types" value="{{ itemFiltre.id_ski }}"
-               {% set idItem = itemFiltre.id_ski | string %}
-               {% if session['filter_types'] %}
-                   {{ ' checked ' if (idItem in session['filter_types']) else '' }}
-               {% endif %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+                 <div class="m-2">
+                            <form method="post" action="/client/panier/filtre">
+                                <fieldset>
+                                    <label for="recherche" class="mb-2">Rechercher une paire ski :</label>
+                                    <input name="filter_word" type="text" size="10" value="{% if session['filter_word'] %}{{ session['filter_word'] }}{% endif %}" class="mb-2 form-control" placeholder="Rechercher" id="recherche">
 
-            >  {{ itemFiltre.libelle }}
-            <br/>
-        {% endfor %}
-    </div>
-    {% endif %}
+                                    <label for="toggle_libelle" class="mb-2">Types de ski :</label>
+                                        {% if itemsFiltre | length >= 1 %}
+                                            {% for ligne in itemsFiltre %}
+                                                <div class="form-check">
+                                                    <input name="filter_types" type="checkbox" id="libelle" value="{{ ligne.id_type_ski }}" {% set idType = ligne.id_type_ski | string %}{% if session['filter_types'] %}{{ 'checked' if (idType in session['filter_types']) else ' ' }}{% endif %}>
+                                                    <label for="libelle" class="mb-2">{{ ligne.libelle }}</label>
+                                                </div>
+                                            {% endfor %}
+                                        {% else %}
+                                            <p>pas de type de ski</p>
+                                        {% endif %}
 
-    <div class="form-group">
-        <h5>Prix :</h5>
-         <input autocomplete="off" name="filter_prix_min"  type="text" placeholder="min"  size="3"
-            value="{% if session['filter_prix_min'] %}{{ session['filter_prix_min'] }}{% endif %}" >
-
-       <input autocomplete="off" name="filter_prix_max"  type="text" placeholder="max"  size="3"
-             value="{% if session['filter_prix_max'] %}{{ session['filter_prix_max'] }}{% endif %}" >
+                                    <label for="prix" class="mb-2">Prix :</label>
+                                    <input name="filter_prix_min" type="number" value="{% if session['filter_prix_min'] %}{{ session['filter_prix_min'] }}{% endif %}" class="form-control mb-2" placeholder="Min" id="prix">
+                                    <input name="filter_prix_max" type="number" value="{% if session['filter_prix_max'] %}{{ session['filter_prix_max'] }}{% endif %}" class="form-control mb-2" placeholder="Max" id="prix">
+                                    <div class="d-flex">
+                                        <button type="submit" class="btn btn-outline-dark btn-sm me-2 mt-2">Appliquer les filtres</button>
+                                        {% if session['filter_word'] or session['filter_prix_max'] or session['filter_prix_min'] or session['filter_types']%}
+                                        <form  action="/client/panier/filtre/suppr"  style="display: inline-block; margin: 5px;"  method="post" >
+                                        <button class="btn btn-outline-dark btn-sm ml-2 ms-2 mt-2"> Réinitialiser </button>
+                                        </form>
+                                        {% endif %}
+                                    </div>
+                                </fieldset>
+                            </form>
+                </div>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary" style="display: inline-block;">Filtrer</button>
-</form>
-{% if session['filter_word'] or session['filter_prix_max'] or session['filter_prix_min'] or session['filter_types']%}
-<form  action="/client/panier/filtre/suppr"  style="display: inline-block; margin: 5px;"  method="post" >
-<button class="btn btn-primary" > Supprimer filtre </button>
-</form>
-{% endif %}
+{% endblock %}

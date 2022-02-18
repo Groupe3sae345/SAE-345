@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bdd_sql_v1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bdd_sql_v1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/client_panier.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/client_panier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/mes_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/mes_styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/client/boutique/_filtre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/boutique/_filtre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/boutique/panier_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/boutique/panier_article.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +102,7 @@
       <workItem from="1644565667944" duration="1737000" />
       <workItem from="1644698809353" duration="264000" />
       <workItem from="1645191561118" duration="3734000" />
-      <workItem from="1645195642856" duration="3102000" />
+      <workItem from="1645195642856" duration="5582000" />
     </task>
     <servers />
   </component>

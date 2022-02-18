@@ -2,3 +2,9 @@ h1 { color: green;}
 
 br , h2 { color: blue; }
 
+.vertical-line{
+        border-left: 2px solid;
+        display: inline-block;
+        color: lightgrey;
+        margin: 0 40px
+      }
