@@ -52,6 +52,7 @@ CREATE TABLE ski(
    fabricant_id INT,
    fournisseur_id INT,
    PRIMARY KEY(id_ski),
+   CONSTRAINT fk_ski_typeSki FOREIGN KEY (type_ski_id) REFERENCES type_ski (id_type_ski),
    CONSTRAINT fk_ski_fabricant FOREIGN KEY (fabricant_id) REFERENCES fabricant (id_fabricant),
    CONSTRAINT fk_ski_fournisseur FOREIGN KEY (fournisseur_id) REFERENCES fournisseur (id_fournisseur)
 );
@@ -101,3 +102,5 @@ SELECT * FROM etat;
 SELECT * FROM fournisseur;
 SELECT * FROM fabricant;
 SELECT * FROM ski;
+
+select fabricant.nom_fabricant, ski.longueur, ski.prix_ski, ski.image from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant
