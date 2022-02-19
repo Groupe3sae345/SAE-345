@@ -5,17 +5,15 @@
 {% endblock %}
 
 {% block body %}
+    <br>
+    <div class="text-center">
 <h3>Types de ski</h3>
 <a href="/admin/type-article/add" class=" btn btn-success text-center"> <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 </svg>Ajouter un type de ski</a>
 <br><br>
-<div class="row">
-<div class="col-1">
-    <br>
 </div>
-<div class="col-10">
-<table class="table table-bordered border-dark">
+<table class="table table-bordered border-dark text-center align-middle">
     <thead class="thead-dark">
         <tr>
             <th class="text-center">Id</th><th class="text-center">Designation</th><th class="text-center">Nombre de skis de ce type</th><th class="text-center">Opération</th>
@@ -52,6 +50,4 @@
     {% endif %}
     </tbody>
 </table>
-</div>
-    </div>
 {% endblock %}

@@ -11,9 +11,10 @@ admin_article = Blueprint('admin_article', __name__,
 @admin_article.route('/admin/article/show')
 def show_article():
     mycursor = get_db().cursor()
-    articles = None
-    # print(articles)
-    return render_template('admin/article/show_article.html', articles=articles)
+    sql = "SELECT ski.*, fabricant.nom_fabricant, type_ski.libelle FROM ski join type_ski on ski.type_ski_id = type_ski.id_type_ski join fabricant on ski.fabricant_id = fabricant.id_fabricant order by ski.id_ski"
+    mycursor.execute(sql)
+    ski = mycursor.fetchall()
+    return render_template('admin/article/show_article.html', articles=ski)
 
 @admin_article.route('/admin/article/add', methods=['GET'])
 def add_article():
