@@ -1,24 +1,48 @@
 {% extends 'admin/layout_admin.html' %}
 
 {% block title %}
-    <title>afficher les types d'article</title>
+    <title>afficher les types de ski</title>
 {% endblock %}
 
 {% block body %}
-<h3>Suppression d'un type d'articles impossible</h3>
-<br>
-<h3>Il y a <span style="color:red;"> {{ nbr_articles.nbr_articles }} </span> article(s) à supprimer</h3>
-<br>
-<ul>
-{% if articles | length >= 1 %}
-
-        {% for ligne in articles %}
-        <li>
-                 nom : {{ ligne.nom }} -  stock : {{ ligne.stock }} - <a class="btn btn-outline-danger" href="/admin/type-article/delete?id={{ ligne.type_article_id }}&amp;id_article={{ligne.id}}" >supprimer</a>
-        </li><br>
-        {% endfor %}
-
-{% endif %}
-</ul>
-<a class="btn btn-outline-warning" href="/admin/type-article/show" >annuler</a>
+    <div class="text-center">
+  <h2>Suppression des ski</h2>
+    </div>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+        <div class="row">
+<div class="col-1">
+    <br>
+</div>
+<div class="col-10">
+    <br><h4>Voici les skis que vous devez supprimer pour pouvoir supprimer ce type de ski</h4><br>
+    <table class="table table_white">
+        <thead>
+        <th>Ski</th><th>Suppression</th>
+        </thead>
+        <tbody>
+        {% if ski | length >= 1 %}
+            {% for ligne in ski %}
+                <tr class="table_white">
+                    <td>{{ ligne.nom_fabricant }}</td>
+                    <td class="text-center2">
+                        <a href="/admin/type-article/delete?id={{ ligne.id_ski }}&id_type={{ id }}" class="btn btn-danger" onclick="return confirm('Are you sure?')" ><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr class="table_white">
+                <td class="text-center2">
+                    Pas de ski
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+<div class="col-1">
+    <br>
+</div>
+</div>
 {% endblock %}

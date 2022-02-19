@@ -37,8 +37,8 @@ def client_commande_add():
         mycursor.execute(sql, item['stylo_id'])
         prix = mycursor.fetchone()
         sqt = "INSERT INTO Ligne_commande(commande_id,stylo_id, prix, quantite) VALUES (%s,%s,%s,%s)"
-        tuple_insert = (commande_id['last_insert_id'], item['stylo_id'], prix['prix'], item['quantite’])
-                        print(tuple_insert)
+        tuple_insert = (commande_id['last_insert_id'], item['stylo_id'], prix['prix'], item['quantite'])
+        print(tuple_insert)
         mycursor.execute(sql, tuple_insert)
         get_db().commit()
     flash(u'Commande ajoutée')
