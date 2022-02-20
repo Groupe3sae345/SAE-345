@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS panier;
 DROP TABLE IF EXISTS ligne_commande;
 DROP TABLE IF EXISTS commande;
+DROP TABLE IF EXISTS avis;
 DROP TABLE IF EXISTS ski;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS type_ski;
@@ -57,6 +58,17 @@ CREATE TABLE ski(
    CONSTRAINT fk_ski_fournisseur FOREIGN KEY (fournisseur_id) REFERENCES fournisseur (id_fournisseur)
 );
 
+CREATE TABLE IF NOT EXISTS avis(
+    id_avis INT NOT NULL AUTO_INCREMENT,
+    commentaire  varchar(500),
+    note NUMERIC(2,1),
+    user_id INT NOT NULL ,
+    ski_id INT NOT NULL ,
+    PRIMARY KEY (id_avis),
+    CONSTRAINT fk_avis_user FOREIGN KEY (user_id) REFERENCES user(id_user),
+    CONSTRAINT fk_avis_ski FOREIGN KEY (ski_id) REFERENCES ski(id_ski)
+);
+
 CREATE TABLE commande(
     id_commande INT AUTO_INCREMENT,
     user_id INT,
@@ -95,10 +107,12 @@ LOAD DATA LOCAL INFILE 'etat.csv' INTO TABLE etat FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'fournisseur.csv' INTO TABLE fournisseur FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'fabricant.csv' INTO TABLE fabricant FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'ski.csv' INTO TABLE ski FIELDS TERMINATED BY ',';
+LOAD DATA LOCAL INFILE 'avis.csv' INTO TABLE avis FIELDS TERMINATED BY ',';
 
 SELECT * FROM user;
 SELECT * FROM type_ski;
 SELECT * FROM etat;
 SELECT * FROM fournisseur;
 SELECT * FROM fabricant;
+SELECT * FROM avis;
 SELECT * FROM ski;
