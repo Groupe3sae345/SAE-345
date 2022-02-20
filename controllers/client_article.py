@@ -15,7 +15,7 @@ client_article = Blueprint('client_article', __name__,
 @client_article.route('/client/article/show')      # remplace /client
 def client_article_show():                                 # remplace client_index
     mycursor = get_db().cursor()
-    sql = "select *, fabricant.nom_fabricant, type_ski.libelle from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id"
+    sql = "select *, fabricant.nom_fabricant, type_ski.libelle from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id order by fabricant.nom_fabricant"
     mycursor.execute(sql)
     skis = mycursor.fetchall()
     articles = skis
@@ -23,12 +23,12 @@ def client_article_show():                                 # remplace client_ind
     mycursor.execute(sql)
     type_ski = mycursor.fetchall()
     types_articles = type_ski
-    sql = "select * , 10 as prix , concat('nomarticle',article_id) as nom from panier"
+    sql = "select * , ski.prix_ski as prix , concat(fabricant.nom_fabricant ,ski_id) as nom from panier join ski on panier.ski_id = ski.id_ski join fabricant on ski.fabricant_id = fabricant.id_fabricant"
     mycursor.execute(sql)
     articles_panier = mycursor.fetchall()
-    prix_total = articles_panier
-    return render_template('client/boutique/panier_article.html', articles=articles, articlesPanier=articles_panier, prix_total=prix_total, itemsFiltre=types_articles)
-
+    #prix_total = articles_panier
+    return render_template('client/boutique/panier_article.html', articles=articles, articlesPanier=articles_panier, itemsFiltre=types_articles)
+#prix_total=prix_total,
 
 @client_article.route('/client/article/details/<int:id>', methods=['GET'])
 def client_article_details(id):
@@ -38,9 +38,11 @@ def client_article_details(id):
     mycursor.execute(sql, tuple_insert)
     skis = mycursor.fetchall()
     article = skis
-    sql = "select * , 10 as prix , concat('nomarticle',article_id) as nom from panier"
+    sql = "select * , ski.prix_ski as prix , concat(fabricant.nom_fabricant ,ski_id) as nom from panier join ski on panier.ski_id = ski.id_ski join fabricant on ski.fabricant_id = fabricant.id_fabricant"
     mycursor.execute(sql)
     articles_panier = mycursor.fetchall()
     commandes_articles = articles_panier
-    return render_template('client/boutique/article_details.html', article=article, commandes_articles=commandes_articles)
-#commentaires=commentaires,
+    sql = "select * from avis"
+    mycursor.execute(sql)
+    commentaires = mycursor.fetchall()
+    return render_template('client/boutique/article_details.html', article=article, commentaires=commentaires, commandes_articles=commandes_articles)

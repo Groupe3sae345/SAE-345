@@ -91,14 +91,14 @@ CREATE TABLE ligne_commande(
 
 CREATE TABLE panier(
     id_panier INT AUTO_INCREMENT,
-    date_ajout DATETIME,
+    date_ajout DATE,
     user_id INT,
-    article_id INT,
+    ski_id INT,
     prix_unit DECIMAL(9,2),
     quantite INT,
     PRIMARY KEY (id_panier),
     CONSTRAINT fk_panier_user FOREIGN KEY (user_id) REFERENCES user(id_user),
-    CONSTRAINT fk_panier_article FOREIGN KEY (article_id) REFERENCES ski(id_ski)
+    CONSTRAINT fk_panier_ski FOREIGN KEY (ski_id) REFERENCES ski(id_ski)
 );
 
 LOAD DATA LOCAL INFILE 'user.csv' INTO TABLE user FIELDS TERMINATED BY ',';
