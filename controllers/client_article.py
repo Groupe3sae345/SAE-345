@@ -24,7 +24,7 @@ def client_article_show():                                 # remplace client_ind
     type_ski = mycursor.fetchall()
     types_articles = type_ski
     client_id = session['user_id']
-    sql = "select * , ski.prix_ski as prix , fabricant.nom_fabricant as nom from panier join ski on panier.ski_id = ski.id_ski join fabricant on ski.fabricant_id = fabricant.id_fabricant WHERE user_id = %s"
+    sql = "select * , ski.prix_ski as prix , concat(fabricant.nom_fabricant ,ski_id) as nom from panier join ski on panier.ski_id = ski.id_ski join fabricant on ski.fabricant_id = fabricant.id_fabricant WHERE user_id = %s"
     mycursor.execute(sql, client_id)
     articles_panier = mycursor.fetchall()
     sql = "select SUM(ski.prix_ski * panier.quantite) as sous_total from panier join ski on panier.ski_id = ski.id_ski where user_id = %s"
