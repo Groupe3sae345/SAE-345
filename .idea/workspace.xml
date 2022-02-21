@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/client_article.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/client_article.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client/boutique/panier_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/boutique/panier_article.html" afterDir="false" />
-    </list>
-    <list id="cb02841b-a5c5-4338-b9be-2fcd5125e70d" name="Changes by totom" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/client/boutique/panier_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/boutique/panier_article.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/client_commande.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/client_commande.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/boutique/article_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/boutique/article_details.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,14 +27,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/templates/client/boutique/panier_article.html">
-      <ranges>
-        <range start1="58" end1="59" start2="58" end2="61" changelist="a9d51c4f-c363-410a-895d-cf4144b2ce6f" />
-        <range start1="119" end1="120" start2="121" end2="122" changelist="cb02841b-a5c5-4338-b9be-2fcd5125e70d" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -115,7 +104,7 @@
       <workItem from="1645280551418" duration="11440000" />
       <workItem from="1645311682718" duration="3635000" />
       <workItem from="1645377051774" duration="26710000" />
-      <workItem from="1645460002270" duration="13625000" />
+      <workItem from="1645460002270" duration="16200000" />
     </task>
     <servers />
   </component>

@@ -2,6 +2,7 @@
 {% block body %}
 <div class="container">
     <div class="row">
+    {% for article in article %}
          <h2 class="card-title">
              <span style="color: #0b2e13">{{ article.nom_fabricant }}</span> &nbsp;{{ article.prix_ski }} €
          </h2>
@@ -14,7 +15,7 @@
 
         </div>
     </div>
-
+    {% endfor %}
     <div class="row" style="background-color: #ba8b00">
         {% if commandes_articles | length > 0 %}
             <div class="col-12">

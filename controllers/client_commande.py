@@ -20,24 +20,24 @@ def client_commande_add():
         flash(u"Pas d'articles dans le panier")
         return redirect(url_for('client_index'))
 
-    date_commande = datetime.now().strftime('XY-%n-%d XH:XM:%S')
+    date_commande = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     tuple_insert = (date_commande, client_id, '1')
     sql = "INSERT INTO commande(date_achat,user_id,etat_id) VALUES (%s,%s,%s)"
     mycursor.execute(sql, tuple_insert)
-    sql = "SELECT Last_insert_id() as Last_insert_id"
+    sql = "SELECT last_insert_id() as last_insert_id"
     mycursor.execute(sql)
     commande_id = mycursor.fetchone()
     print(commande_id, tuple_insert)
 
     for item in items_panier:
-        tuple_insert = (client_id, item['stylo_id'])
-        sql = "DELETE FROM panier WHERE user_id = %s AND article_id = %s"
+        tuple_insert = (client_id, item['ski_id'])
+        sql = "DELETE FROM panier WHERE user_id = %s AND ski_id = %s"
         mycursor.execute(sql, tuple_insert)
         sql = "SELECT prix_ski FROM ski WHERE id_ski = %s"
-        mycursor.execute(sql, item['stylo_id'])
+        mycursor.execute(sql, item['ski_id'])
         prix = mycursor.fetchone()
-        sqt = "INSERT INTO Ligne_commande(commande_id,stylo_id, prix, quantite) VALUES (%s,%s,%s,%s)"
-        tuple_insert = (commande_id['last_insert_id'], item['stylo_id'], prix['prix'], item['quantite'])
+        sqt = "INSERT INTO ligne_commande(commande_id,ski_id, prix, quantite) VALUES (%s,%s,%s,%s)"
+        tuple_insert = (commande_id['last_insert_id'], item['ski_id'], prix['prix_ski'], item['quantite'])
         print(tuple_insert)
         mycursor.execute(sql, tuple_insert)
         get_db().commit()
