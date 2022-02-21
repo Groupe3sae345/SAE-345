@@ -45,12 +45,14 @@
                                 </form>
                             </td>
                         </tr>
-                    {% endfor %}
-                    {% endif %}
                 </table>
                     <form action="/client/panier/vider" style="display: inline-block;"  method="post" >
-                        <button class="btn btn-primary"  > Éffacer tout </button>
+                        <input type="hidden" name="stock" value="{{ itemPanier.quantite }}">
+                        <input type="hidden" name="idArticle" value="{{ itemPanier.ski_id }}">
+                        <button class="btn btn-primary"  > Effacer tout </button>
                     </form>
+                    {% endfor %}
+                    {% endif %}
                     <form action="/client/commande/add" style="display: inline-block;"  method="post" >
                         <button class="btn btn-primary" > Passer ma commande </button>
                     </form>

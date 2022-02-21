@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bdd_sql_v1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bdd_sql_v1.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/client_article.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/client_article.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/client_panier.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/client_panier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/client/boutique/panier_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/boutique/panier_article.html" afterDir="false" />
     </list>
@@ -105,7 +103,7 @@
       <workItem from="1645207626512" duration="5196000" />
       <workItem from="1645280551418" duration="11440000" />
       <workItem from="1645311682718" duration="3635000" />
-      <workItem from="1645377051774" duration="13106000" />
+      <workItem from="1645377051774" duration="26347000" />
     </task>
     <servers />
   </component>
