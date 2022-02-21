@@ -15,7 +15,7 @@ client_article = Blueprint('client_article', __name__,
 @client_article.route('/client/article/show')      # remplace /client
 def client_article_show():                                 # remplace client_index
     mycursor = get_db().cursor()
-    sql = "select *, fabricant.nom_fabricant, type_ski.libelle from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id order by fabricant.nom_fabricant"
+    sql = "select *, fabricant.nom_fabricant, type_ski.libelle from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id order by fabricant.nom_fabricant, ski.id_ski"
     mycursor.execute(sql)
     skis = mycursor.fetchall()
     articles = skis
@@ -23,12 +23,15 @@ def client_article_show():                                 # remplace client_ind
     mycursor.execute(sql)
     type_ski = mycursor.fetchall()
     types_articles = type_ski
-    sql = "select * , ski.prix_ski as prix , concat(fabricant.nom_fabricant ,ski_id) as nom from panier join ski on panier.ski_id = ski.id_ski join fabricant on ski.fabricant_id = fabricant.id_fabricant"
-    mycursor.execute(sql)
+    client_id = session['user_id']
+    sql = "select * , ski.prix_ski as prix , fabricant.nom_fabricant as nom from panier join ski on panier.ski_id = ski.id_ski join fabricant on ski.fabricant_id = fabricant.id_fabricant WHERE user_id = %s"
+    mycursor.execute(sql, client_id)
     articles_panier = mycursor.fetchall()
-    #prix_total = articles_panier
-    return render_template('client/boutique/panier_article.html', articles=articles, articlesPanier=articles_panier, itemsFiltre=types_articles)
-#prix_total=prix_total,
+    sql = "select SUM(ski.prix_ski * panier.quantite) as sous_total from panier join ski on panier.ski_id = ski.id_ski where user_id = %s"
+    mycursor.execute(sql, client_id)
+    prix_total = mycursor.fetchone()['sous_total']
+    print(prix_total)
+    return render_template('client/boutique/panier_article.html', articles=articles, prix_total=prix_total, articlesPanier=articles_panier, itemsFiltre=types_articles)
 
 @client_article.route('/client/article/details/<int:id>', methods=['GET'])
 def client_article_details(id):

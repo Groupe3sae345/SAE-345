@@ -74,22 +74,18 @@ def client_panier_delete():
 
 @client_panier.route('/client/panier/vider', methods=['POST'])
 def client_panier_vider():
-    client_id = session['user_id']
-    id_article = request.form.get('idArticle')
-    while (id_article is not None):
-        mycursor = get_db().cursor()
-        tuple_select = (client_id, id_article)
-        print(tuple_select)
-        sql = "SELECT quantite FROM panier WHERE user_id = %s AND ski_id=%s"
-        mycursor.execute(sql, tuple_select)
-        quantite = mycursor.fetchone()['quantite']
-        print(quantite)
-        tuple_update = (quantite, id_article)
-        sql = "UPDATE ski SET stock = stock+%s WHERE id_ski=%s"
-        mycursor.execute(sql, tuple_update)
-        tuple_delete = (id_article)
-        sql = "DELETE FROM panier WHERE ski_id=%s"
-        mycursor.execute(sql, tuple_delete)
+    mycursor = get_db().cursor()
+    idUser = session['user_id']
+    sql = '''select quantite, ski_id from panier where user_id = %s;'''
+    mycursor.execute(sql, idUser)
+    panier = mycursor.fetchall()
+    for i in range(0, len(panier)):
+        lignePanier = panier[i]
+        sql = '''update ski set stock = stock + %s where id_ski = %s;'''
+        mycursor.execute(sql, (lignePanier['quantite'], lignePanier['ski_id']))
+        get_db().commit()
+    sql = "delete from panier where user_id = %s;"
+    mycursor.execute(sql, idUser)
     get_db().commit()
     return redirect('/client/article/show')
     #return redirect(url_for('client_index'))

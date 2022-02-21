@@ -45,20 +45,19 @@
                                 </form>
                             </td>
                         </tr>
-                </table>
-                    <form action="/client/panier/vider" style="display: inline-block;"  method="post" >
-                        <input type="hidden" name="stock" value="{{ itemPanier.quantite }}">
-                        <input type="hidden" name="idArticle" value="{{ itemPanier.ski_id }}">
-                        <button class="btn btn-primary"  > Effacer tout </button>
-                    </form>
                     {% endfor %}
                     {% endif %}
+                </table>
+                        <br>
+                    <form action="/client/panier/vider" style="display: inline-block;"  method="post" >
+                        <button class="btn btn-primary"  > Effacer tout </button>
+                    </form>
                     <form action="/client/commande/add" style="display: inline-block;"  method="post" >
                         <button class="btn btn-primary" > Passer ma commande </button>
                     </form>
-                    {#{% if prix_total %}
-                    Total à payer : <strong>{{ "{:,.2f} €".format(prix_total) }}</strong>
-                    {% endif %}#}
+                    {% if prix_total %}
+                    Total à payer : <strong>{{ "{:,.2f} €".format((prix_total)) }}</strong>
+                    {% endif %}
             {% endif %}
             </div>
 
