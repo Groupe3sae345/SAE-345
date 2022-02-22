@@ -81,12 +81,12 @@ CREATE TABLE commande(
 
 CREATE TABLE ligne_commande(
     commande_id INT,
-    article_id INT,
+    ski_id INT,
     prix_unit DECIMAL(9,2),
     quantite INT,
-    PRIMARY KEY (commande_id,article_id),
+    PRIMARY KEY (commande_id,ski_id),
     CONSTRAINT fk_ligne_commande_commande FOREIGN KEY (commande_id) REFERENCES commande(id_commande),
-    CONSTRAINT fk_ligne_commande_article FOREIGN KEY (article_id) REFERENCES ski(id_ski)
+    CONSTRAINT fk_ligne_commande_ski FOREIGN KEY (ski_id) REFERENCES ski(id_ski)
 );
 
 CREATE TABLE panier(

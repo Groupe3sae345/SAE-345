@@ -12,35 +12,38 @@ client_commande = Blueprint('client_commande', __name__,
 @client_commande.route('/client/commande/add', methods=['POST'])
 def client_commande_add():
     mycursor = get_db().cursor()
-    client_id = session['user_id']
-    sql = "SELECT * FROM panier WHERE user_id=%s"
-    mycursor.execute(sql, client_id)
-    items_panier = mycursor.fetchall()
-    if items_panier is None or len(items_panier) < 1:
-        flash(u"Pas d'articles dans le panier")
-        return redirect(url_for('client_index'))
 
-    date_commande = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    tuple_insert = (date_commande, client_id, '1')
-    sql = "INSERT INTO commande(date_achat,user_id,etat_id) VALUES (%s,%s,%s)"
-    mycursor.execute(sql, tuple_insert)
-    sql = "SELECT last_insert_id() as last_insert_id"
-    mycursor.execute(sql)
-    commande_id = mycursor.fetchone()
-    print(commande_id, tuple_insert)
+    date = datetime.now().strftime('%Y-%m-%d')
+    id_etat = 1
+    id_user = session['user_id']
+    tuple = (date, id_etat, id_user)
 
-    for item in items_panier:
-        tuple_insert = (client_id, item['ski_id'])
-        sql = "DELETE FROM panier WHERE user_id = %s AND ski_id = %s"
-        mycursor.execute(sql, tuple_insert)
-        sql = "SELECT prix_ski FROM ski WHERE id_ski = %s"
+    sql = "insert into commande(date_achat, etat_id, user_id) values(%s,%s,%s);"
+    mycursor.execute(sql, tuple)
+
+    sql = "select last_insert_id() as last_insert_id from commande where user_id = %s;"
+    mycursor.execute(sql, id_user)
+    commande_last_id = mycursor.fetchone()
+
+    sql = "select * from panier where user_id = %s;"
+    mycursor.execute(sql, id_user)
+    panier = mycursor.fetchall()
+
+    for item in panier:
+        sql = "select prix_ski from ski where id_ski = %s;"
         mycursor.execute(sql, item['ski_id'])
         prix = mycursor.fetchone()
-        sqt = "INSERT INTO ligne_commande(commande_id,ski_id, prix, quantite) VALUES (%s,%s,%s,%s)"
-        tuple_insert = (commande_id['last_insert_id'], item['ski_id'], prix['prix_ski'], item['quantite'])
-        print(tuple_insert)
-        mycursor.execute(sql, tuple_insert)
-        get_db().commit()
+        sql = '''insert into ligne_commande(ski_id, commande_id, prix_unit, quantite) values (%s,%s,%s,%s);'''
+        mycursor.execute(sql, (item['ski_id'], commande_last_id['last_insert_id'], prix['prix_ski'], item['quantite']))
+
+    sql = '''select * from ligne_commande;'''
+    mycursor.execute(sql)
+    result = mycursor.fetchall()
+    print(result)
+
+    sql = "delete from panier where user_id = %s;"
+    mycursor.execute(sql, id_user)
+    get_db().commit()
     flash(u'Commande ajoutée')
     return redirect('/client/article/show')
     #return redirect(url_for('client_index'))
@@ -49,8 +52,13 @@ def client_commande_add():
 
 @client_commande.route('/client/commande/show', methods=['get','post'])
 def client_commande_show():
+    client_id = session['user_id']
     mycursor = get_db().cursor()
-    commandes = None
-    articles_commande = None
+    sql = '''select panier.user_id, commande.id_commande, commande.date_achat, ligne_commande.quantite, SUM(ski.prix_ski * panier.quantite) as prix_total, etat.libelle from commande join ligne_commande on commande.id_commande = ligne_commande.commande_id join ski on ligne_commande.ski_id = ski.id_ski join panier on ski.id_ski = panier.ski_id join etat on commande.etat_id = etat.id_etat group by id_commande where user_id = %s'''
+    mycursor.execute(sql, client_id)
+    commandes = mycursor.fetchall()
+    sql = '''select SUM(ski.prix_ski * panier.quantite), ligne_commande.* as prix_total from panier join ski on panier.ski_id = ski.id_ski join ligne_commande on  where user_id = %s'''
+    mycursor.execute(sql, client_id)
+    articles_commande = mycursor.fetchall()
     return render_template('client/commandes/show.html', commandes=commandes, articles_commande=articles_commande)
 
