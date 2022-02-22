@@ -53,12 +53,13 @@ def client_commande_add():
 @client_commande.route('/client/commande/show', methods=['get','post'])
 def client_commande_show():
     client_id = session['user_id']
+    idCommande = request.form.get('idCommande')
     mycursor = get_db().cursor()
-    sql = '''select panier.user_id, commande.id_commande, commande.date_achat, ligne_commande.quantite, SUM(ski.prix_ski * panier.quantite) as prix_total, etat.libelle from commande join ligne_commande on commande.id_commande = ligne_commande.commande_id join ski on ligne_commande.ski_id = ski.id_ski join panier on ski.id_ski = panier.ski_id join etat on commande.etat_id = etat.id_etat group by id_commande where user_id = %s'''
+    sql = '''select commande.id_commande as id, commande.date_achat as date_achat, SUM(ligne_commande.quantite) as quantite, SUM(ski.prix_ski * ligne_commande.quantite) as prix_total, commande.etat_id, etat.libelle from commande join ligne_commande on ligne_commande.commande_id = commande.id_commande join ski on ski.id_ski = ligne_commande.ski_id join etat on etat.id_etat = commande.etat_id where commande.user_id = %s group by commande.id_commande'''
     mycursor.execute(sql, client_id)
     commandes = mycursor.fetchall()
-    sql = '''select SUM(ski.prix_ski * panier.quantite), ligne_commande.* as prix_total from panier join ski on panier.ski_id = ski.id_ski join ligne_commande on  where user_id = %s'''
-    mycursor.execute(sql, client_id)
+    sql = '''select fabricant.nom_fabricant as nom, ski.prix_ski as prix, SUM(ligne_commande.quantite) as quantite, SUM(ski.prix_ski * ligne_commande.quantite) as prix_ligne from commande join ligne_commande on ligne_commande.commande_id = commande.id_commande join ski on ski.id_ski = ligne_commande.ski_id join fabricant on ski.fabricant_id = fabricant.id_fabricant where commande.id_commande = %s group by fabricant.nom_fabricant, ligne_commande.quantite, ski.prix_ski'''
+    mycursor.execute(sql, idCommande)
     articles_commande = mycursor.fetchall()
     return render_template('client/commandes/show.html', commandes=commandes, articles_commande=articles_commande)
 
