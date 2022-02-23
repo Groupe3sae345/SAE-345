@@ -55,11 +55,15 @@ def client_commande_show():
     client_id = session['user_id']
     idCommande = request.form.get('idCommande')
     mycursor = get_db().cursor()
+    if idCommande is None:
+        articles_commande = None
+    else:
+        sql = '''select fabricant.nom_fabricant as nom, ski.prix_ski as prix, SUM(ligne_commande.quantite) as quantite, SUM(ski.prix_ski * ligne_commande.quantite) as prix_ligne from commande join ligne_commande on ligne_commande.commande_id = commande.id_commande join ski on ski.id_ski = ligne_commande.ski_id join fabricant on ski.fabricant_id = fabricant.id_fabricant where commande.id_commande = %s group by fabricant.nom_fabricant, ligne_commande.quantite, ski.prix_ski'''
+        mycursor.execute(sql, idCommande)
+        articles_commande = mycursor.fetchall()
+
     sql = '''select commande.id_commande as id, commande.date_achat as date_achat, SUM(ligne_commande.quantite) as quantite, SUM(ski.prix_ski * ligne_commande.quantite) as prix_total, commande.etat_id, etat.libelle from commande join ligne_commande on ligne_commande.commande_id = commande.id_commande join ski on ski.id_ski = ligne_commande.ski_id join etat on etat.id_etat = commande.etat_id where commande.user_id = %s group by commande.id_commande'''
     mycursor.execute(sql, client_id)
     commandes = mycursor.fetchall()
-    sql = '''select fabricant.nom_fabricant as nom, ski.prix_ski as prix, SUM(ligne_commande.quantite) as quantite, SUM(ski.prix_ski * ligne_commande.quantite) as prix_ligne from commande join ligne_commande on ligne_commande.commande_id = commande.id_commande join ski on ski.id_ski = ligne_commande.ski_id join fabricant on ski.fabricant_id = fabricant.id_fabricant where commande.id_commande = %s group by fabricant.nom_fabricant, ligne_commande.quantite, ski.prix_ski'''
-    mycursor.execute(sql, idCommande)
-    articles_commande = mycursor.fetchall()
     return render_template('client/commandes/show.html', commandes=commandes, articles_commande=articles_commande)
 

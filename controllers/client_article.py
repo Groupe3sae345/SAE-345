@@ -15,8 +15,34 @@ client_article = Blueprint('client_article', __name__,
 @client_article.route('/client/article/show')      # remplace /client
 def client_article_show():                                 # remplace client_index
     mycursor = get_db().cursor()
-    sql = "select ski.*, avis.*, fabricant.nom_fabricant, type_ski.libelle from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id join avis on ski.id_ski = avis.ski_id order by fabricant.nom_fabricant, ski.id_ski"
-    mycursor.execute(sql)
+    sql = "select ski.*, avis.*, AVG(avis.note) as moy_notes, COUNT(id_avis) as nb_avis, fabricant.nom_fabricant, type_ski.libelle from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id left join avis on avis.ski_id = ski.id_ski"
+    list_param = []
+    condition_and = ""
+    if "filter_word" in session or "filter_prix_min" in session or "filter_prix_max" in session or "filter_types" in session:
+        sql = sql + " where "
+    if "filter_word" in session:
+        sql = sql + "fabricant.nom_fabricant like %s "
+        recherche = "%" + session["filter_word"] + "%"
+        list_param.append(recherche)
+        condition_and = "and "
+    if "filter_prix_min" in session or "filter_prix_max" in session:
+        sql = sql + condition_and + "prix_ski between %s and %s "
+        list_param.append(session["filter_prix_min"])
+        list_param.append(session["filter_prix_max"])
+        condition_and = "and "
+    if "filter_types" in session:
+        sql = sql + condition_and + "("
+        last_item = session['filter_types'][-1]
+        for item in session['filter_types']:
+            sql = sql + "type_ski_id = %s "
+            if item != last_item:
+                sql = sql + "or "
+            list_param.append(item)
+        sql = sql + ")"
+    sql = sql + " group by ski.id_ski, avis.id_avis, fabricant.nom_fabricant, type_ski.libelle order by fabricant.nom_fabricant, ski.id_ski;"
+    print(sql)
+    tuple_sql = tuple(list_param)
+    mycursor.execute(sql, tuple_sql)
     skis = mycursor.fetchall()
     articles = skis
     sql = "select * from type_ski"
@@ -45,7 +71,7 @@ def client_article_details(id):
     mycursor.execute(sql)
     articles_panier = mycursor.fetchall()
     commandes_articles = articles_panier
-    sql = "select * from avis"
-    mycursor.execute(sql)
+    sql = "select * from avis where ski_id = %s"
+    mycursor.execute(sql, id)
     commentaires = mycursor.fetchall()
     return render_template('client/boutique/article_details.html', article=article, commentaires=commentaires, commandes_articles=commandes_articles)
