@@ -15,7 +15,7 @@ client_article = Blueprint('client_article', __name__,
 @client_article.route('/client/article/show')      # remplace /client
 def client_article_show():                                 # remplace client_index
     mycursor = get_db().cursor()
-    sql = "select *, fabricant.nom_fabricant, type_ski.libelle from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id order by fabricant.nom_fabricant, ski.id_ski"
+    sql = "select ski.*, avis.*, fabricant.nom_fabricant, type_ski.libelle from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id join avis on ski.id_ski = avis.ski_id order by fabricant.nom_fabricant, ski.id_ski"
     mycursor.execute(sql)
     skis = mycursor.fetchall()
     articles = skis
