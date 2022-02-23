@@ -115,10 +115,6 @@ def client_panier_delete_line():
 
 @client_panier.route('/client/panier/filtre', methods=['POST'])
 def client_panier_filtre():
-    mycursor = get_db().cursor()
-    sql = "SELECT * FROM type_ski"
-    mycursor.execute(sql)
-    type_ski = mycursor.fetchall()
     filter_word = request.form.get('filter_word')
     filter_types = request.form.getlist('filter_types')
     filter_prix_min = request.form.get('filter_prix_min')
