@@ -55,7 +55,7 @@ def auth_signup_post():
     username = request.form.get('username')
     password = request.form.get('password')
     tuple_select = (username, email)
-    sql = '''SELECT * from user WHERE username = %s AND email = %s;'''
+    sql = '''SELECT * from user WHERE username = %s OR email = %s;'''
     mycursor.execute(sql, tuple_select)
     user = mycursor.fetchone()
     if user:
