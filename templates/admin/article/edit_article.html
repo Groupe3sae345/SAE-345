@@ -1,12 +1,57 @@
 {% extends 'admin/layout_admin.html' %}
+
 {% block title %}
-    <title>modifier un article</title>
+    <title>Modifier une paire de ski</title>
 {% endblock %}
 
 {% block body %}
-{#  <h2>modifier d'un article</h2>#}
+<div class="text-center">
+  <h2>Modification d'une paire de ski</h2>
+    </div>
   {% if error %}
     <p class=error><strong>Error:</strong> {{ error }}
   {% endif %}
+    <div class="text-center">
+  <form method="post" action="/admin/article/edit" {#action="{{ url_for('valid_edit_sport') }}#} >
+    <fieldset>
 
+        <legend> Modifier une paire de ski</legend><br>
+        <input hidden id="id" name="id" value="{{ ski.id_ski }}">
+        <label for="nom">Nom du fabricant :</label><br>
+        <select name="nom" required>
+        {% for fab in fab %}
+        <option value="{{ fab.id_fabricant }}"
+            {% if ski.fabricant_id is defined and fab.id_fabricant == ski.fabricant_id %}selected{% endif %}> {{ fab.nom_fabricant }} </option>
+        {% endfor %}
+        </select><br>
+        <br>
+        <label for="type_ski">Type de ski</label><br>
+        <select name="type_ski" required>
+        {% for type in type_ski %}
+        <option value="{{ type.id_type_ski }}"
+            {% if ski.type_ski_id is defined and type.id_type_ski == ski.type_ski_id %}selected{% endif %}> {{ type.libelle }} </option>
+        {% endfor %}
+        </select><br>
+        <br>
+        <label for="prix">Prix de la paire de ski :</label><br>
+        <input autocomplete="off" id="prix" type="number" name="prix" size="25" value="{{ ski.prix_ski }}" placeholder="Saisir le prix de la paire de ski" required><br>
+        <br>
+        <label for="longueur">Longueur de la paire de ski :</label><br>
+        <input autocomplete="off" id="longueur" type="number" name="longueur" size="25" value="{{ ski.longueur }}" placeholder="Saisir la longueur de la paire de ski" required><br>
+        <br>
+        <label for="stock">Nombre de paires disponibles :</label><br>
+        <input autocomplete="off" id="stock" type="number" name="stock" size="25" value="{{ ski.stock }}" placeholder="Saisir le nombre de paire disponible" required><br>
+        <br>
+        <label for="fournisseur">Nom du fournisseur :</label><br>
+        <select name="fournisseur" required>
+        {% for frn in frn %}
+        <option value="{{ frn.id_fournisseur }}"
+            {% if ski.fournisseur_id is defined and frn.id_fournisseur == ski.fournisseur_id %}selected{% endif %}> {{ frn.nom_fournisseur }} </option>
+        {% endfor %}
+        </select><br>
+        <br>
+        <input type="submit" value="Modifier" name="Valider">
+    </fieldset>
+  </form>
+    </div>
 {% endblock %}

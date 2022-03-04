@@ -1,13 +1,55 @@
 {% extends 'admin/layout_admin.html' %}
 
 {% block title %}
-    <title>afficher les articles</title>
+    <title>Afficher les ski</title>
 {% endblock %}
 
 {% block body %}
-<h3>articles</h3>
-<a  class="btn btn-outline-success" href="/admin/article/add">ajouter un article</a>
-<br><br>
-
-
+    <br>
+<div class="text-center">
+    <h3>Ski</h3>
+    <a href="/admin/article/add" class=" btn btn-success"> <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
+  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+</svg> Ajouter un ski</a>
+    <br><br>
+    </div>
+<table class="table table-bordered border-dark text-center align-middle">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th><th>Nom des skis</th><th>Type de ski</th><th>Prix des skis</th><th>Longueur des skis</th><th>Stock</th><th>Nom du fournisseur</th><th>Image</th><th>Opération</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if articles | length >= 1 %}
+        {% for ligne in articles %}
+           <tr>
+                  <td class="text-center2">{{ ligne.id_ski }}</td>
+                  <td class="text-center2">{{ ligne.nom_fabricant }}</td>
+                  <td class="text-center2">{{ ligne.libelle}}</td>
+                  <td class="text-center2">{{ ligne.prix_ski }} €</td>
+                  <td class="text-center2">{{ ligne.longueur}} cm</td>
+                  <td class="text-center2">{{ ligne.stock}}</td>
+                  <td class="text-center2">{{ ligne.nom_fournisseur}}</td>
+                  <td>
+                      {%  if ligne.image is not none %}
+                          <img class="card-img-top rounded mx-auto d-block"  style="width:100px;height:100px"  src="{{ url_for('static', filename = 'images/' + ligne.image) }}"  alt="image  de {{ ligne.nom_fabricant }}">
+                      {% else %}
+                          <img class="card-img-top rounded mx-auto d-block"   style="width:100px;height:100px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="image  de {{ ligne.nom_fabricant }}" >
+                      {% endif %}
+                  </td>
+                  <td class="text-center2">
+                      <a href="/admin/article/edit/{{ ligne.id_ski }}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-pencil" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg> Editer</a>
+                      <a href="/admin/article/delete?id={{ ligne.id_ski }}" class="btn btn-danger" onclick="return confirm('Are you sure?')" ><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg> Supprimer</a>
+                  </td>
+           </tr>
+        {% endfor %}
+    {% else %}
+            <tr>
+                  <td class="text-center2">
+                      Pas de skis
+                  </td>
+           </tr>
+    {% endif %}
+    </tbody>
+</table>
 {% endblock %}

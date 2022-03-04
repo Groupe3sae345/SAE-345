@@ -1,7 +1,51 @@
 {% extends 'admin/layout_admin.html' %}
 
-{% block javascripts %}
-{#    attention il faut importer la bibliotheque chart.js avant de définir l'objet chart#}
+{% block title %}
+    <div class="text-center">
+    <title>Sélecteur</title>
+    </div>
+{% endblock %}
+
+{% block body %}
+   <div class="row">
+<div class="col-1">
+    <br>
+</div>
+<div class="col-10">
+<table class="table table-bordered border-dark">
+    <thead class="thead-dark">
+        <tr>
+            <th class="text-center">Id du type de ski</th><th class="text-center">Nom du type de ski</th><th class="text-center">Nombre de skis de ce type</th><th class="text-center">Moyenne de longueur de chaque type de skis</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if typesSport | length >= 1 %}
+        {% for ligne in typesSport %}
+           <tr>
+                  <td class="text-center">{{ ligne.id_typeSport }}</td>
+                  <td class="text-center">{{ ligne.libelle }}</td>
+                  <td class="text-center">{{ ligne.nb_sports }}</td>
+               {% if ligne.avg_nb_pratiquant == 0 %}
+                    <td class="text-center">Pas de type de sport dans cette catégorie</td>
+               {% else %}
+                  <td class="text-center">{{ ligne.avg_nb_pratiquant }}</td>
+               {% endif %}
+            </tr>
+        {% endfor %}
+
+    {% else %}
+            <tr>
+                  <td class="text-center">Pas d'Etat</td>
+           </tr>
+    {% endif %}
+    </tbody>
+</table>
+</div>
+    </div>
+{% endblock %}
+
+{#{% block javascripts %}
+{#    attention il faut importer la bibliotheque chart.js avant de définir l'objet chart
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}" ></script>
 
       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
@@ -24,9 +68,9 @@
     <a href="https://www.youtube.com/watch?v=E2hytuQvLlE" target="_blank"> tuto partie2 graph.js</a>&nbsp;
     <br>
 
-{# https://jinja.palletsprojects.com/en/3.0.x/templates/#html-escaping #}
+{# https://jinja.palletsprojects.com/en/3.0.x/templates/#html-escaping
 
     <a href="https://www.youtube.com/watch?v=TcwYXIIM-fs" target="_blank">dataviz, c'est quoi en 1 mn ? (juste la première minute)</a>
     <br>
     <a href="https://www.youtube.com/watch?v=bZDnSUjfMt8" target="_blank">dataviz, c'est quoi ? (juste la première minute)</a>
-{% endblock %}
+{% endblock %} #}

@@ -2,19 +2,20 @@
 {% block body %}
 <div class="container">
     <div class="row">
+    {% for article in article %}
          <h2 class="card-title">
-             <span style="color: #0b2e13">{{ article.nom }}</span> &nbsp;{{ article.prix }} €
+             <span style="color: #0b2e13">{{ article.nom_fabricant }}</span> &nbsp;{{ article.prix_ski }} €
          </h2>
 
         <div class="card-body">
         {%  if article.image is not none %}
-            <img class="card-img-top rounded mx-auto d-block"  style="width:100px;height:100px"  src="{{ url_for('static', filename = 'images/' + article['image']) }}"  alt="image  de {{ article.nom }}" >
-        {% else %} <img class="card-img-top rounded mx-auto d-block"   style="width:100px;height:100px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="image  de {{ article.nom }}" >
+            <img class="card-img-top rounded mx-auto d-block"  style="width:100px;height:100px"  src="{{ url_for('static', filename = 'images/' + article.image) }}"  alt="image  de {{ article.image }}" >
+        {% else %} <img class="card-img-top rounded mx-auto d-block"   style="width:100px;height:100px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="image  de {{ article.image }}" >
         {% endif %}
 
         </div>
     </div>
-
+    {% endfor %}
     <div class="row" style="background-color: #ba8b00">
         {% if commandes_articles | length > 0 %}
             <div class="col-12">
@@ -30,7 +31,7 @@
                     <input type="number" name="note" id="inputNote" step="0.1" min="0" max="5" class="form-control" style="width: 8rem !important;" value="" >
                 </div>
                 <input type="hidden" name="idUser" value="{{ session['user_id'] }}">
-                <input type="hidden" name="idArticle" value="{{ article.id }}">
+                <input type="hidden" name="idArticle" value="{{ article.id_ski }}">
                 <form  action="/client/comment/add" style="display: inline-block;"  method="post" >
                         <button class="btn btn-primary" > Ajouter un avis </button>
                 </form>

@@ -1,14 +1,15 @@
 <form method="post"  action="/client/panier/filtre"   style="display: inline-block">
     <div class="form-group">
+        Rechercher une marque de ski
         <input name="filter_word"  type="text" placeholder="Recherche" size="10" class="form-control"
                value="{% if session['filter_word'] %}{{ session['filter_word'] }}{% endif %}"  >
     </div>
    {% if itemsFiltre is defined %}
     <div class="form-group">
-        <h4>Types articles</h4>
+        <h4>Type de ski</h4>
         {% for itemFiltre in itemsFiltre %}
-        <input type="checkbox" name="filter_types" value="{{ itemFiltre.id }}"
-               {% set idItem = itemFiltre.id | string %}
+        <input type="checkbox" name="filter_types" value="{{ itemFiltre.id_type_ski }}"
+               {% set idItem = itemFiltre.id_type_ski | string %}
                {% if session['filter_types'] %}
                    {{ ' checked ' if (idItem in session['filter_types']) else '' }}
                {% endif %}

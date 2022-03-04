@@ -41,7 +41,7 @@
                         {% for commande in commandes %}
                             <tr id="" {#% if commande.etat.nom == "Produit indisponible" %#} style="background: #FFD600; font-weight: bold;" {#% endif %#}>
                                 <td>{{ commande.date_achat.strftime('%d-%m-%Y') }}</td>
-                                <td> {{ commande.nbr_articles }} </td>
+                                <td> {{ commande.quantite }} </td>
                                 <td>
                                     {{ "{:,.2f} €".format(commande.prix_total) }}
                                 </td>

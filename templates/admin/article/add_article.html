@@ -1,13 +1,57 @@
 {% extends 'admin/layout_admin.html' %}
 
 {% block title %}
-    <title>ajouter un article</title>
+    <div class="text-center">
+    <title>Ajouter une paire de ski</title>
+    </div>
 {% endblock %}
 
 {% block body %}
-  <h2>ajout d'un article</h2>
+    <div class="text-center">
+  <h2>Ajout d'une paire de ski</h2>
+    </div>
   {% if error %}
     <p class=error><strong>Error:</strong> {{ error }}
   {% endif %}
-
+    <div class="text-center">
+  <form method="post" action="/admin/article/add" {#action="{{ url_for('valid_add_article') }}#} >
+    <fieldset>
+        <legend> Ajouter une paire de ski</legend><br>
+        <label for="nom">Nom du fabricant :</label><br>
+        <select name="nom" required>
+            <option value="">Sélectionner un fabricant</option>
+            {% for fab in fab %}
+                <option value="{{ fab.id_fabricant }}"> {{ fab.nom_fabricant }} </option>
+            {% endfor %}
+        </select><br>
+        <br>
+        <label for="type_ski_id">Type de ski</label><br>
+        <select name="type_ski_id" required>
+            <option value="">Sélectionner un type de ski</option>
+            {% for type in type_ski %}
+                <option value="{{ type.id_type_ski }}"> {{ type.libelle }} </option>
+            {% endfor %}
+        </select><br>
+        <br>
+        <label for="prix">Prix de la paire de ski :</label><br>
+        <input autocomplete="off" id="prix" type="number" name="prix" size="25" value="" placeholder="Saisir le prix de la paire de ski" required><br>
+        <br>
+        <label for="longueur">Longueur de la paire de ski :</label><br>
+        <input autocomplete="off" id="longueur" type="number" name="longueur" size="25" value="" placeholder="Saisir la longueur de la paire de ski" required><br>
+        <br>
+        <label for="stock">Nombre de paires disponibles :</label><br>
+        <input autocomplete="off" id="stock" type="number" name="stock" size="25" value="" placeholder="Saisir le nombre de paire disponible" required><br>
+        <br>
+        <label for="fournisseur">Nom du fournisseur :</label><br>
+        <select name="fournisseur" required>
+            <option value="">Sélectionner un fournisseur</option>
+            {% for frn in frn %}
+                <option value="{{ frn.id_fournisseur }}"> {{ frn.nom_fournisseur }} </option>
+            {% endfor %}
+        </select><br>
+        <br>
+        <input type="submit" value="Ajouter" name="Valider" >
+    </fieldset>
+  </form>
+    </div>
 {% endblock %}
