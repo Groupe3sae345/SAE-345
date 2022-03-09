@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="" />
+    <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/client_commentaire.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/client_commentaire.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sae345.loo" beforeDir="false" afterPath="$PROJECT_DIR$/sae345.loo" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +41,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Cours/S2/JavaScript/TP2" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -107,6 +111,11 @@
       <workItem from="1645631900581" duration="13471000" />
       <workItem from="1645654920860" duration="798000" />
       <workItem from="1645655987558" duration="36000" />
+      <workItem from="1646033528264" duration="1157000" />
+      <workItem from="1646057818695" duration="25000" />
+      <workItem from="1646127351252" duration="1953000" />
+      <workItem from="1646661952902" duration="23000" />
+      <workItem from="1646661977747" duration="23000" />
     </task>
     <servers />
   </component>
