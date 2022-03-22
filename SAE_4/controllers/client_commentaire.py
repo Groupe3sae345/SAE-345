@@ -12,11 +12,7 @@ client_commentaire = Blueprint('client_commentaire', __name__,
 def client_comment_add():
     mycursor = get_db().cursor()
     article_id = request.form.get('idArticle', None)
-    user_id = request.form.get('idUser', None)
-    commentaire = request.form.get('commentaire', None)
-    note = request.form.get('note', None)
-    sql = '''insert into avis values(NULL,%s,%s,%s,%s) where ski_id = %s and user_id = %s'''
-    mycursor.execute(sql, (commentaire, note, user_id, article_id), article_id, user_id)
+
     return redirect('/client/article/details/'+article_id)
     #return redirect(url_for('client_article_details', id=int(article_id)))
 
