@@ -3,6 +3,8 @@ DROP TABLE IF EXISTS ligne_commande;
 DROP TABLE IF EXISTS commande;
 DROP TABLE IF EXISTS avis;
 DROP TABLE IF EXISTS ski;
+DROP TABLE IF EXISTS adresse;
+DROP TABLE IF EXISTS region;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS type_ski;
 DROP TABLE IF EXISTS etat;
@@ -41,6 +43,16 @@ CREATE TABLE user(
     est_actif tinyint(1),
     email VARCHAR(50),
     PRIMARY KEY(id_user)
+);
+
+CREATE TABLE adresse(
+    id_adresse INT AUTO_INCREMENT,
+    libelle_adresse varchar(255),
+    type_adresse varchar(255),
+    region varchar(255),
+    user_id INT,
+    PRIMARY KEY(id_adresse),
+    CONSTRAINT fk_adresse_user FOREIGN KEY (user_id) REFERENCES user (id_user)
 );
 
 CREATE TABLE ski(
@@ -102,6 +114,7 @@ CREATE TABLE panier(
 );
 
 LOAD DATA LOCAL INFILE 'user.csv' INTO TABLE user FIELDS TERMINATED BY ',';
+LOAD DATA LOCAL INFILE 'adresse.csv' INTO TABLE adresse FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'type_ski.csv' INTO TABLE type_ski FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'etat.csv' INTO TABLE etat FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'fournisseur.csv' INTO TABLE fournisseur FIELDS TERMINATED BY ',';
@@ -109,6 +122,7 @@ LOAD DATA LOCAL INFILE 'fabricant.csv' INTO TABLE fabricant FIELDS TERMINATED BY
 LOAD DATA LOCAL INFILE 'ski.csv' INTO TABLE ski FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'avis.csv' INTO TABLE avis FIELDS TERMINATED BY ',';
 
+SELECT * FROM adresse;
 SELECT * FROM user;
 SELECT * FROM type_ski;
 SELECT * FROM etat;

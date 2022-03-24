@@ -4,11 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="" />
+    <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/SAE_4/adresse.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SAE_4/controllers/admin_client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SAE_4/templates/admin/client/show_client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/38fa3358-1c80-4ca3-aca8-ed6c1e5980b7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/38fa3358-1c80-4ca3-aca8-ed6c1e5980b7/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_3/3_Besoins.odt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/bdd_sql_v1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/bdd_sql_v1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/controllers/auth_security.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/controllers/auth_security.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/templates/admin/_nav_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/templates/admin/_nav_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/templates/auth/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/templates/auth/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rapport 18 03.odt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
     <envs>
@@ -34,6 +57,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -112,6 +136,7 @@
       <workItem from="1646663676075" duration="1285000" />
       <workItem from="1646985360889" duration="237000" />
       <workItem from="1646988682041" duration="26000" />
+      <workItem from="1648110490224" duration="10878000" />
     </task>
     <servers />
   </component>

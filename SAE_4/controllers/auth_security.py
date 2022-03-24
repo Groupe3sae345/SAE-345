@@ -21,7 +21,6 @@ def auth_login_post():
     mycursor = get_db().cursor()
     username = request.form.get('username')
     password = request.form.get('password')
-    tuple_select = username
     sql = '''SELECT * FROM user WHERE username = %s;'''
     retour = mycursor.execute(sql, username)
     user = mycursor.fetchone()
@@ -54,6 +53,8 @@ def auth_signup_post():
     email = request.form.get('email')
     username = request.form.get('username')
     password = request.form.get('password')
+    adresse = request.form.get('adresse')
+    region = request.form.get('region')
     tuple_select = (username, email)
     sql = '''SELECT * from user WHERE username = %s OR email = %s;'''
     mycursor.execute(sql, tuple_select)
@@ -73,6 +74,9 @@ def auth_signup_post():
     info_last_id = mycursor.fetchone()
     user_id = info_last_id['last_insert_id']
     print('last_insert_id', user_id)
+    tuple_insert2 = (adresse, region, user_id)
+    sql = '''INSERT INTO adresse VALUES (NULL, %s, 'Livraison', %s, %s);'''
+    mycursor.execute(sql, tuple_insert2)
     get_db().commit()
     session.pop('username', None)
     session.pop('role', None)
