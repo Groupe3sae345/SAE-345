@@ -1,0 +1,65 @@
+{% extends 'admin/layout.html' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+    {% for article in article %}
+         <h2 class="card-title">
+             <span style="color: #0b2e13">{{ article.nom_fabricant }}</span> &nbsp;{{ article.prix_ski }} €
+         </h2>
+
+        <div class="card-body">
+        {%  if article.image is not none %}
+            <img class="card-img-top rounded mx-auto d-block"  style="width:100px;height:100px"  src="{{ url_for('static', filename = 'images/' + article.image) }}"  alt="image  de {{ article.image }}" >
+        {% else %} <img class="card-img-top rounded mx-auto d-block"   style="width:100px;height:100px"   src="{{ url_for('static', filename='images/no_photo.jpeg')}}"  alt="image  de {{ article.image }}" >
+        {% endif %}
+
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="row">
+            <div class="col-5 bg-light p-3">
+        <h3>Les commentaires</h3>
+            </div>
+        <table class="table" style="border: solid #8959A8 1px ">
+            <thead class="thead-dark">
+            <tr>
+                <th>user</th>
+                <th>Commentaires</th>
+                <th>Note</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if commentaires %}
+                {% for commentaire in commentaires %}
+                    <tr>
+                        <td>{{ commentaire.user_id }}</td>
+                        <td>{{ commentaire.commentaire }}</td>
+                        <td>{{ commentaire.note }}
+                        {{ commentaire.__dict__ }}
+                        </td>
+                        <td>
+                            {% if commentaire.user_id == session['user_id'] %}
+                                  <form  action="/client/comment/delete"  style="display: inline-block;"  method="post" >
+                                      <input type="hidden" name="idArticle" value="{{ commentaire.article_id }}">
+                                      <input type="hidden" name="idUser" value="{{ commentaire.user_id }}">
+                                      <input type="hidden" name="idAvis" value="{{ commentaire.id }}">
+                                      <button class="btn btn-primary" > supprimer </button>
+                                  </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr class="table-warning"><td>Pas de commentaire</td><td></td><td></td></tr>
+            {% endif %}
+            </tbody>
+        </table>
+        <a class="btn btn-outline-primary btn-lg" href="/admin/article/show" >Retour</a>
+    </div>
+</div>
+
+
+
+{% endblock %}

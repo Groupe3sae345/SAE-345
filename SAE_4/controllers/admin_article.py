@@ -98,3 +98,20 @@ def valid_edit_article():
     message = u'article modifié , nom:' + nom + '- type_article:' + type_article_id + ' - prix:' + prix + ' - stock:' + stock + ' - longueur:' + longueur + ' - fournisseur:' + fournisseur
     flash(message)
     return redirect(url_for('admin_article.show_article'))
+
+@admin_article.route('/admin/article/commentaire/<int:id>', methods=['GET'])
+def admin_article_commentaire(id):
+    mycursor = get_db().cursor()
+    tuple_insert= (id)
+    sql = "select *, fabricant.nom_fabricant, type_ski.libelle, ski.image from ski join fabricant on ski.fabricant_id = fabricant.id_fabricant join type_ski on type_ski.id_type_ski=ski.type_ski_id where ski.id_ski=%s"
+    mycursor.execute(sql, tuple_insert)
+    skis = mycursor.fetchall()
+    article = skis
+    sql = "select * , ski.prix_ski as prix , concat(fabricant.nom_fabricant ,ski_id) as nom from panier join ski on panier.ski_id = ski.id_ski join fabricant on ski.fabricant_id = fabricant.id_fabricant"
+    mycursor.execute(sql)
+    articles_panier = mycursor.fetchall()
+    commandes_articles = articles_panier
+    sql = "select * from avis where ski_id = %s"
+    mycursor.execute(sql, id)
+    commentaires = mycursor.fetchall()
+    return render_template('admin/article/commentaire_article.html', article=article, commentaires=commentaires, commandes_articles=commandes_articles)
