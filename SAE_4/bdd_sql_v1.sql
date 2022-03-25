@@ -45,6 +45,12 @@ CREATE TABLE user(
     PRIMARY KEY(id_user)
 );
 
+CREATE TABLE region(
+    id_region INT AUTO_INCREMENT,
+    libelle_region varchar(255),
+    PRIMARY KEY(id_region)
+);
+
 CREATE TABLE adresse(
     id_adresse INT AUTO_INCREMENT,
     libelle_adresse varchar(255),
@@ -113,6 +119,7 @@ CREATE TABLE panier(
     CONSTRAINT fk_panier_ski FOREIGN KEY (ski_id) REFERENCES ski(id_ski)
 );
 
+LOAD DATA LOCAL INFILE 'region.csv' INTO TABLE region FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'user.csv' INTO TABLE user FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'adresse.csv' INTO TABLE adresse FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'type_ski.csv' INTO TABLE type_ski FIELDS TERMINATED BY ',';

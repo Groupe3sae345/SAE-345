@@ -1,0 +1,48 @@
+{% extends 'admin/layout_admin.html' %}
+
+{% block title %}
+    <title>Ajouter un nouveau client</title>
+{% endblock %}
+
+{% block body %}
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/admin/client/edit">
+    <fieldset>
+        <legend class="text-center">Ajouter un nouveau client</legend><br>
+        <div class="mb-3 text-center">
+        <input type="hidden" name="id" size="18" value="" id="id">
+
+        <label for="nom">Nom du client</label><br>
+        {% for user in user %}
+            {{ user.username }}
+        {% endfor %}<br>
+        <br>
+        {% for adresse in adresse %}
+        <label for="adresse">Adresse du client</label><br>
+        <input autocomplete="off" class="form-select" type="text" name="adresse" size="40" value="{{ adresse.libelle_adresse }}" id="adresse" placeholder="Adresse du client" required><br>
+        <br>
+        <label for="region">Region</label><br>
+        <select autocomplete="off" name="region" required>
+            {% for region in region %}
+            <option value="{{ region.id_region }}"> {{ region.libelle_region }} </option>
+            {% endfor %}
+        </select><br>
+        <br>
+        <label for="type">Type d'adresse</label><br>
+        <select autocomplete="off" name="region" required>
+            <option value="">Sélectionner un type d'adresse</option>
+            <option value="Expédition">Expédition</option>
+            <option value="Livraison">Livraison</option>
+        </select><br>
+        </div>
+        {% endfor %}
+        <div class="col-12 text-center">
+        <button class="btn btn-primary" type="submit">Valider</button>
+        </div>
+{#        <input type="submit" value="Modifier" name="Modifier" >#}
+
+    </fieldset>
+  </form>
+{% endblock %}
