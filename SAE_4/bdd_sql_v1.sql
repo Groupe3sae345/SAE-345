@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS commande;
 DROP TABLE IF EXISTS avis;
 DROP TABLE IF EXISTS ski;
 DROP TABLE IF EXISTS adresse;
+DROP TABLE IF EXISTS type_adresse;
 DROP TABLE IF EXISTS region;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS type_ski;
@@ -45,14 +46,27 @@ CREATE TABLE user(
     PRIMARY KEY(id_user)
 );
 
+CREATE TABLE region(
+    id_region INT AUTO_INCREMENT,
+    libelle_region varchar(255),
+    PRIMARY KEY(id_region)
+);
+
+CREATE TABLE type_adresse(
+    id_type_adresse INT AUTO_INCREMENT,
+    libelle_type_adresse varchar(255),
+    PRIMARY KEY(id_type_adresse)
+);
+
 CREATE TABLE adresse(
     id_adresse INT AUTO_INCREMENT,
     libelle_adresse varchar(255),
-    type_adresse varchar(255),
+    type_adresse_id INT,
     region varchar(255),
     user_id INT,
     PRIMARY KEY(id_adresse),
-    CONSTRAINT fk_adresse_user FOREIGN KEY (user_id) REFERENCES user (id_user)
+    CONSTRAINT fk_adresse_user FOREIGN KEY (user_id) REFERENCES user (id_user),
+    CONSTRAINT fk_adresse_type_adresse FOREIGN KEY(type_adresse_id) REFERENCES type_adresse(id_type_adresse)
 );
 
 CREATE TABLE ski(
@@ -113,6 +127,8 @@ CREATE TABLE panier(
     CONSTRAINT fk_panier_ski FOREIGN KEY (ski_id) REFERENCES ski(id_ski)
 );
 
+LOAD DATA LOCAL INFILE 'region.csv' INTO TABLE region FIELDS TERMINATED BY ',';
+LOAD DATA LOCAL INFILE 'type_adresse.csv' INTO TABLE type_adresse FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'user.csv' INTO TABLE user FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'adresse.csv' INTO TABLE adresse FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'type_ski.csv' INTO TABLE type_ski FIELDS TERMINATED BY ',';
@@ -123,6 +139,7 @@ LOAD DATA LOCAL INFILE 'ski.csv' INTO TABLE ski FIELDS TERMINATED BY ',';
 LOAD DATA LOCAL INFILE 'avis.csv' INTO TABLE avis FIELDS TERMINATED BY ',';
 
 SELECT * FROM adresse;
+SELECT * FROM type_adresse;
 SELECT * FROM user;
 SELECT * FROM type_ski;
 SELECT * FROM etat;

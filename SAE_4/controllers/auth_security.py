@@ -75,7 +75,7 @@ def auth_signup_post():
     user_id = info_last_id['last_insert_id']
     print('last_insert_id', user_id)
     tuple_insert2 = (adresse, region, user_id)
-    sql = '''INSERT INTO adresse VALUES (NULL, %s, 'Livraison', %s, %s);'''
+    sql = '''INSERT INTO adresse VALUES (NULL, %s, 2, %s, %s);'''
     mycursor.execute(sql, tuple_insert2)
     get_db().commit()
     session.pop('username', None)

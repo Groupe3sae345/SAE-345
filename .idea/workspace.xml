@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/SAE_4/type_adresse.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_4/controllers/admin_article.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/controllers/admin_article.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_4/templates/admin/article/show_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/templates/admin/article/show_article.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_4/templates/admin/client/show_client.html" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/templates/admin/client/show_client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/adresse.csv" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/adresse.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/bdd_sql_v1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/bdd_sql_v1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/controllers/admin_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/controllers/admin_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/controllers/auth_security.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/controllers/auth_security.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/templates/admin/article/edit_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/templates/admin/article/edit_article.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/templates/admin/client/edit_client.html" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/templates/admin/client/edit_client.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +137,8 @@
       <workItem from="1646985360889" duration="237000" />
       <workItem from="1646988682041" duration="26000" />
       <workItem from="1648110490224" duration="12320000" />
+      <workItem from="1648192569537" duration="6414000" />
+      <workItem from="1648300576817" duration="8248000" />
     </task>
     <servers />
   </component>
