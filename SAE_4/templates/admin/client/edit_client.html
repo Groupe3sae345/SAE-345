@@ -8,11 +8,11 @@
   {% if error %}
     <p class=error><strong>Error:</strong> {{ error }}
   {% endif %}
-  <form method="post" action="/admin/client/edit">
+  <form method="post" action="/admin/client/edit" {#action="{{ url_for('valid_edit_client') }}#} >
     <fieldset>
         <legend class="text-center">Ajouter un nouveau client</legend><br>
         <div class="mb-3 text-center">
-        <input type="hidden" name="id" size="18" value="" id="id">
+        <input type="hidden" name="id" size="18" value="{{ user.id_user }}" id="id">
 
         <label for="nom">Nom du client</label><br>
         {% for user in user %}
@@ -25,16 +25,16 @@
         <br>
         <label for="region">Region</label><br>
         <select autocomplete="off" name="region" required>
-            {% for region in region %}
-            <option value="{{ region.id_region }}"> {{ region.libelle_region }} </option>
-            {% endfor %}
+        {% for region in region %}
+        <option value="{{ region.id_region }}"> {{ region.libelle_region }} </option>
+        {% endfor %}
         </select><br>
         <br>
         <label for="type">Type d'adresse</label><br>
         <select autocomplete="off" name="region" required>
-            <option value="">Sélectionner un type d'adresse</option>
-            <option value="Expédition">Expédition</option>
-            <option value="Livraison">Livraison</option>
+        {% for type in type %}
+        <option value="{{ type.id_type_adresse }}"> {{ type.libelle_type_adresse }} </option>
+        {% endfor %}
         </select><br>
         </div>
         {% endfor %}

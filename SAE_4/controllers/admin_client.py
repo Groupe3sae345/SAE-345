@@ -15,24 +15,27 @@ def admin_index():
 @admin_client.route('/admin/client/show')
 def admin_client_show():
     mycursor = get_db().cursor()
-    sql='''select user.username, adresse.id_adresse, adresse.libelle_adresse, adresse.region, adresse.type_adresse FROM adresse JOIN user on user.id_user = adresse.user_id'''
+    sql='''select user.username, adresse.id_adresse, adresse.libelle_adresse, adresse.region, type_adresse.libelle_type_adresse as type_adresse FROM adresse JOIN user on user.id_user = adresse.user_id join type_adresse on type_adresse.id_type_adresse = adresse.type_adresse_id'''
     mycursor.execute(sql)
     adresse =mycursor.fetchall()
     return render_template('admin/client/show_client.html', adresse=adresse)
 
-@admin_client.route('/admin/client/edit/<int:id>')
+@admin_client.route('/admin/client/edit/<int:id>', methods=['GET'])
 def admin_client_edit(id):
     mycursor = get_db().cursor()
     sql = "SELECT * FROM region"
     mycursor.execute(sql)
     region = mycursor.fetchall()
-    sql = "SELECT username FROM user WHERE id_user = %s"
+    sql = "SELECT id_user, username FROM user WHERE id_user = %s"
     mycursor.execute(sql, id)
     user = mycursor.fetchall()
     sql = "SELECT * FROM adresse where user_id = %s"
     mycursor.execute(sql, id)
     adresse = mycursor.fetchall()
-    return render_template('admin/client/edit_client.html', region=region, user=user, adresse=adresse)
+    sql = "SELECT * FROM type_adresse"
+    mycursor.execute(sql)
+    type_adresse = mycursor.fetchall()
+    return render_template('admin/client/edit_client.html', region=region, user=user, adresse=adresse, type=type_adresse)
 
 @admin_client.route('/admin/client/edit', methods=['POST'])
 def valid_edit_client():
@@ -43,7 +46,7 @@ def valid_edit_client():
     tuple_update = (adresse, type, region, id)
     print(tuple_update)
     mycursor = get_db().cursor()
-    sql = '''UPDATE adresse SET libelle_adresse = %s, type_adresse = %s, region = %s WHERE user_id = %s'''
+    sql = '''UPDATE adresse SET libelle_adresse = %s, type_adresse_id = %s, region = %s WHERE user_id = %s;'''
     debug = mycursor.execute(sql, tuple_update)
     print(debug)
     get_db().commit()
