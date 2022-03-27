@@ -28,14 +28,15 @@ def admin_client_edit(id):
     region = mycursor.fetchall()
     sql = "SELECT id_user, username FROM user where id_user = %s"
     mycursor.execute(sql, id)
-    user = mycursor.fetchall()
+    user = mycursor.fetchone()
     print(user)
     sql = "SELECT * FROM adresse where user_id = %s"
     mycursor.execute(sql, id)
-    adresse = mycursor.fetchall()
+    adresse = mycursor.fetchone()
     sql = "SELECT * FROM type_adresse"
     mycursor.execute(sql)
     type_adresse = mycursor.fetchall()
+    print(adresse)
     return render_template('admin/client/edit_client.html', region=region, user=user, adresse=adresse, type=type_adresse)
 
 @admin_client.route('/admin/client/edit', methods=['POST'])

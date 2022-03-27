@@ -12,28 +12,26 @@
     <fieldset>
         <legend class="text-center">Modifier l'adresse du client</legend><br>
         <div class="mb-3 text-center">
-        {% for user in user %}
         <input type="hidden" class="form-select" name="id" size="1" value="{{ user.id_user }}" id="id">
         <label for="nom">Nom du client</label><br>
             {{ user.username }}<br>
-        {% endfor %}
         <br>
-        {% for adresse in adresse %}
         <label for="adresse">Adresse du client</label><br>
         <input autocomplete="off" class="form-select" type="text" name="adresse" size="40" value="{{ adresse.libelle_adresse }}" id="adresse" placeholder="Adresse du client" required><br>
-        {% endfor %}
         <br>
         <label for="region">Region</label><br>
         <select autocomplete="off" class="form-select" name="region" id="region" required>
         {% for region in region %}
-        <option value="{{ region.id_region }}"> {{ region.libelle_region }} </option>
+        <option value="{{ region.id_region }}"
+                    {% if region.id_region == adresse.region_id %} selected {% endif %}>{{ region.libelle_region }} </option>
         {% endfor %}
         </select><br>
         <br>
         <label for="type">Type d'adresse</label><br>
         <select autocomplete="off" class="form-select" name="type" id="type" required>
         {% for type in type %}
-        <option value="{{ type.id_type_adresse }}"> {{ type.libelle_type_adresse }} </option>
+        <option value="{{ type.id_type_adresse }}"
+                    {% if type.id_type_adresse == adresse.type_adresse_id %} selected {% endif %}>{{ type.libelle_type_adresse }} </option>
         {% endfor %}
         </select><br>
         </div>
