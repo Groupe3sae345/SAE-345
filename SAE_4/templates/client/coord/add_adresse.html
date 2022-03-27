@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'client/layout_client.html' %}
 
-</body>
-</html>
+{% block title %}
+    <div class="text-center">
+    <title>Ajouter une paire de ski</title>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+  <h2>Ajout d'une adresse</h2>
+    </div>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+    <div class="text-center">
+  <form method="post" action="/client/coord/add" {#action="{{ url_for('valid_add_article') }}#} >
+    <fieldset>
+        <label for="adresse">Adresse :</label><br>
+        <input autocomplete="off" id="adresse" type="text" name="adresse" size="25" value="" placeholder="Saisir l'adresse" required><br>
+        <br>
+        <label for="region">Région</label><br>
+        <select name="region" id="region" required>
+            <option value="">Sélectionner une région</option>
+            {% for region in region %}
+                <option value="{{ region.id_region }}"> {{ region.libelle_region }} </option>
+            {% endfor %}
+        </select><br>
+        <br>
+        <br>
+        <input type="submit" value="Ajouter" name="Valider" >
+    </fieldset>
+  </form>
+    </div>
+{% endblock %}
