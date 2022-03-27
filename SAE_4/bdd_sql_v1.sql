@@ -61,7 +61,6 @@ CREATE TABLE region(
     PRIMARY KEY(id_region)
 );
 
-
 CREATE TABLE adresse(
     id_adresse INT AUTO_INCREMENT,
     libelle_adresse varchar(255),
