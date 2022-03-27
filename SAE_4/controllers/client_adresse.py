@@ -40,18 +40,18 @@ def valid_add_adresse():
 @client_adresse.route('/client/coord/delete', methods=['GET'])
 def delete_adresse():
     id_user = session["user_id"]
-    id_addr = request.form.get('id', '')
+    id_addr = request.args.get('id', '')
     mycursor = get_db().cursor()
     sql = "SELECT COUNT(id_adresse) as nb_addr FROM adresse where adresse.user_id = %s "
     mycursor.execute(sql, id_user)
     nb = mycursor.fetchall()
-    if (nb[0]['nb_addr'] >= 1):
+    if (nb[0]['nb_addr'] > 1):
         sql = "DELETE FROM adresse WHERE id_adresse = %s;"
         mycursor.execute(sql, id_addr)
         get_db().commit()
         return redirect('/client/coord/show')
     else:
-        flash(u'Vous devez avoir au moins une adresse enregistrée sur le compte')
+        flash(u'Impossible de supprimer, vous devez avoir au moins une adresse enregistrée sur le compte')
         return redirect('/client/coord/show')
 
 
