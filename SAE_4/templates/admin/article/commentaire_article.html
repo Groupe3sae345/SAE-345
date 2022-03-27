@@ -1,4 +1,4 @@
-{% extends 'admin/layout.html' %}
+{% extends 'admin/layout_admin.html' %}
 {% block body %}
 <div class="container">
     <div class="row">
@@ -40,14 +40,12 @@
                         {{ commentaire.__dict__ }}
                         </td>
                         <td>
-                            {% if commentaire.user_id == session['user_id'] %}
-                                  <form  action="/client/comment/delete"  style="display: inline-block;"  method="post" >
-                                      <input type="hidden" name="idArticle" value="{{ commentaire.article_id }}">
-                                      <input type="hidden" name="idUser" value="{{ commentaire.user_id }}">
-                                      <input type="hidden" name="idAvis" value="{{ commentaire.id }}">
-                                      <button class="btn btn-primary" > supprimer </button>
-                                  </form>
-                            {% endif %}
+                            <form  action="/admin/article/commentaire/delete"  style="display: inline-block;"  method="post" >
+                                <input type="hidden" name="idArticle" value="{{ commentaire.article_id }}">
+                                <input type="hidden" name="idUser" value="{{ commentaire.user_id }}">
+                                <input type="hidden" name="idAvis" value="{{ commentaire.id }}">
+                                <button class="btn btn-primary" > supprimer </button>
+                            </form>
                         </td>
                     </tr>
                 {% endfor %}

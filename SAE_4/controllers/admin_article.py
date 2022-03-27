@@ -115,3 +115,11 @@ def admin_article_commentaire(id):
     mycursor.execute(sql, id)
     commentaires = mycursor.fetchall()
     return render_template('admin/article/commentaire_article.html', article=article, commentaires=commentaires, commandes_articles=commandes_articles)
+
+@admin_article.route('/admin/article/commentaire/delete', methods=['POST'])
+def admin_comment_detete():
+    mycursor = get_db().cursor()
+    article_id = request.form.get('idArticle', None)
+
+    return redirect('/admin/article/show/')
+    #return redirect(url_for('client_article_details', id=int(article_id)))
