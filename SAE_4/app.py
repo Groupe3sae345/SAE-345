@@ -18,6 +18,7 @@ from controllers.admin_panier import *
 from controllers.admin_type_article import *
 from controllers.admin_dataviz_article import *
 from controllers.admin_client import *
+from controllers.admin_dataviz_client import *
 
 app = Flask(__name__)
 app.secret_key = 'une cle(token) : grain de sel(any random string)'
@@ -69,6 +70,7 @@ app.register_blueprint(admin_panier)
 app.register_blueprint(admin_type_article)
 app.register_blueprint(admin_dataviz_article)
 app.register_blueprint(admin_client)
+app.register_blueprint(admin_dataviz_client)
 
 
 if __name__ == '__main__':

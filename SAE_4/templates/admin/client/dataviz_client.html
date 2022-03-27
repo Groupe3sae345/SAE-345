@@ -1,0 +1,73 @@
+{% extends 'admin/layout_admin.html' %}
+
+{% block title %}
+    <title>Gestion des clients</title>
+{% endblock %}
+
+{% block body %}
+<br>
+    <div class="text-center">
+    <h3>Dataviz des expéditions des clients</h3><br>
+    </div><br>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <section class="module-small">
+  <div class="container row">
+  <div id="message_flashed"></div>
+
+  <h3> Etat</h3><br>
+
+
+            <div style="max-height: 700px; max-width: 700px">
+
+            <canvas id="myChart" width="843" height="843" style="display: block; box-sizing: border-box; height: 674.4px; width: 674.4px;"></canvas>
+
+            <script>
+                const ctx = document.getElementById('myChart').getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels:[{% for label in labels %}
+                            '{{ label }}',
+                        {% endfor %}
+                        ],
+                        datasets: [{
+                            label: 'Masquer',
+                            data: [{% for value in values %}
+                            {{ value }},
+                        {% endfor %}],
+                            backgroundColor: [
+                            'rgba(54, 162, 235)',
+                            'rgba(255, 99, 132)',
+                            'rgba(255, 206, 86)',
+                            'rgba(75, 192, 192)',
+                            'rgba(153, 102, 255)',
+                            'rgba(255, 159, 64)',
+                                "rgba(154, 12, 235)",
+                                "rgba(83, 122, 206)",
+                                "rgba(33, 185, 231)",
+                                "rgba(214, 198, 29)"
+
+                            ],
+                            borderColor: [
+                            'rgba(54, 162, 235)',
+                            'rgba(255, 99, 132)',
+                            'rgba(255, 206, 86)',
+                            'rgba(75, 192, 192)',
+                            'rgba(153, 102, 255)',
+                            'rgba(255, 159, 64)',
+                                "rgba(154, 12, 235)",
+                                "rgba(83, 122, 206)",
+                                "rgba(33, 185, 231)",
+                                "rgba(214, 198, 29)"
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                });
+                </script>
+            </div>
+
+
+  </div><br>
+</section><br>
+{% endblock %}

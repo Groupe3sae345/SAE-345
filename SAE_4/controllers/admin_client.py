@@ -48,7 +48,7 @@ def valid_edit_client():
     tuple_update = (adresse, type, region, id)
     print(tuple_update)
     mycursor = get_db().cursor()
-    sql = '''UPDATE adresse SET libelle_adresse = %s, type_adresse_id = %s, region_id = %s WHERE user_id = %s;'''
+    sql = '''UPDATE adresse SET libelle_adresse = %s, type_adresse_id = %s, region_id = %s WHERE id_adresse = %s;'''
     debug = mycursor.execute(sql, tuple_update)
     print(debug)
     get_db().commit()
