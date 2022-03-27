@@ -14,7 +14,7 @@ def add_commentaire():
     sql='''SELECT * FROM avis'''
     mycursor.execute(sql)
     region = mycursor.fetchall()
-    return render_template('client/article/add_adresse.html', region=region)
+    return render_template('client/boutique/add_commentaire.html', region=region)
 
 @client_commentaire.route('/client/comment/add', methods=['POST'])
 def client_comment_add():

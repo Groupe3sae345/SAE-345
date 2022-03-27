@@ -1,0 +1,30 @@
+{% extends 'client/layout_client.html' %}
+
+{% block title %}
+    <div class="text-center">
+    <title>Ajouter un commentaire</title>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+  <h2>Ajout d'un commentaire</h2>
+    </div>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+    <div class="text-center">
+  <form method="post" action="/client/comment/add" {#action="{{ url_for('valid_add_article') }}#} >
+    <fieldset>
+        <label for="commentaire">Commentaire :</label><br>
+        <input autocomplete="off" id="commentaire" type="text" name="commentaire" size="500" value="" placeholder="Saisir le commentaire" required><br>
+        <br>
+        <label for="note">Note :</label><br>
+        <input type="number" id="note" step="0.5" min="0.5" max="5" class="form-control" style="width: 4rem !important;" value="1" name="note">
+        <br>
+        <br>
+        <input type="submit" value="Ajouter" name="Valider" >
+    </fieldset>
+  </form>
+    </div>
+{% endblock %}
