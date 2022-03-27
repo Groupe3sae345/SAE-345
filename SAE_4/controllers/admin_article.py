@@ -114,7 +114,7 @@ def admin_article_commentaire(id):
     sql = "select * from avis where ski_id = %s"
     mycursor.execute(sql, id)
     commentaires = mycursor.fetchall()
-    return render_template('admin/article/../templates/admin/commentaire/show_commentaire.html', article=article, commentaires=commentaires, commandes_articles=commandes_articles)
+    return render_template('admin/article/show_commentaire.html', article=article, commentaires=commentaires, commandes_articles=commandes_articles)
 
 @admin_article.route('/admin/article/commentaire/delete', methods=['POST'])
 def admin_comment_detete():
