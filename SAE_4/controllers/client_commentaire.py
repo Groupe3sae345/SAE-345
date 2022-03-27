@@ -19,11 +19,11 @@ def add_commentaire():
 @client_commentaire.route('/client/comment/add', methods=['POST'])
 def client_comment_add():
     mycursor = get_db().cursor()
-    article_id = mycursor.fetchall()
-    id = session["user_id"]
+    article_id = '6'
+    user_id = session["user_id"]
     commentaire = request.form.get('commentaire', '')
     note = request.form.get('note', '')
-    tuple_insert = (article_id, id, commentaire, note)
+    tuple_insert = (article_id, user_id, commentaire, note)
     mycursor = get_db().cursor()
     sql = '''INSERT INTO avis(ski_id, user_id,commentaire,note) VALUES (%s, %s, %s, %s); '''
     mycursor.execute(sql, tuple_insert)
@@ -31,7 +31,6 @@ def client_comment_add():
     print(u'commentaire ajouté')
     message='commentaire ajouté'
     flash(message)
-
 
     return redirect('/client/article/details/'+article_id)
     #return redirect(url_for('client_article_details', id=int(article_id)))
