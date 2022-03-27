@@ -14,7 +14,7 @@
     <p class=error><strong>Error:</strong> {{ error }}
   {% endif %}
     <div class="text-center">
-  <form method="post" action="/client/comment/add" {#action="{{ url_for('valid_add_article') }}#} >
+  <form method="post" action="/client/comment/add" {#action="{{ url_for('client_comment_add') }}#} >
     <fieldset>
         <label for="commentaire">Commentaire :</label><br>
         <input autocomplete="off" id="commentaire" type="text" name="commentaire" size="500" value="" placeholder="Saisir le commentaire" required><br>
