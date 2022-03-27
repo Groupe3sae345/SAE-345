@@ -58,18 +58,23 @@ def delete_adresse():
 @client_adresse.route('/client/coord/edit/<int:id>', methods=['GET'])
 def edit_adresse(id):
     mycursor = get_db().cursor()
-    sql = "SELECT id_type_ski, libelle FROM type_ski WHERE id_type_ski = %s;"
+    sql = "SELECT id_adresse, libelle_adresse, region_id FROM adresse WHERE id_adresse = %s;"
     mycursor.execute(sql, (id))
     adresse = mycursor.fetchone()
-    return render_template('client/coord/edit_adresse.html', adresse=adresse)
+    sql = '''SELECT * FROM region'''
+    mycursor.execute(sql)
+    region = mycursor.fetchall()
+    return render_template('client/coord/edit_adresse.html', adresse=adresse, region=region)
 
 @client_adresse.route('/client/coord/edit', methods=['POST'])
 def valid_edit_adresse():
-    libelle = request.form.get('libelle', '')
+    libelle = request.form.get('adresse', '')
+    region = request.form.get('region', '')
     id_adresse = request.form.get('id', '')
-    tuple_update = (libelle, id_adresse)
+    tuple_update = (libelle, region, id_adresse)
+    print(tuple_update)
     mycursor = get_db().cursor()
-    sql = '''UPDATE type_ski SET libelle = %s WHERE id_type_ski = %s; '''
+    sql = '''UPDATE adresse SET libelle_adresse = %s, region_id = %s WHERE id_adresse = %s; '''
     mycursor.execute(sql, tuple_update)
     get_db().commit()
     flash(u'type article modifié, id: ' + id_adresse + " libelle : " + libelle)
