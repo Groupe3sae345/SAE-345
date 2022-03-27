@@ -5,13 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9d51c4f-c363-410a-895d-cf4144b2ce6f" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/SAE_4/templates/admin/client/delete_client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SAE-345.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SAE-345.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c78c612c-991f-4917-a0e5-b2a0db3bb006.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c78c612c-991f-4917-a0e5-b2a0db3bb006.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/SAE_4/adresse.csv" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/adresse.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE_4/bdd_sql_v1.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/bdd_sql_v1.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE_4/controllers/admin_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/controllers/admin_client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE_4/controllers/auth_security.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/controllers/auth_security.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_4/templates/admin/article/edit_article.html" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/templates/admin/article/edit_article.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/templates/admin/client/edit_client.html" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/templates/admin/client/edit_client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/templates/admin/client/show_client.html" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/templates/admin/client/show_client.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE_4/user.csv" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_4/user.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +68,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RunManager" selected="Python.SAE-345">
     <configuration name="bdd_sql_v1.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">

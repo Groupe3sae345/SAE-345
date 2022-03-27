@@ -4,9 +4,9 @@ DROP TABLE IF EXISTS commande;
 DROP TABLE IF EXISTS avis;
 DROP TABLE IF EXISTS ski;
 DROP TABLE IF EXISTS adresse;
-DROP TABLE IF EXISTS type_adresse;
 DROP TABLE IF EXISTS region;
 DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS type_adresse;
 DROP TABLE IF EXISTS type_ski;
 DROP TABLE IF EXISTS etat;
 DROP TABLE IF EXiSTS fournisseur;
@@ -36,6 +36,13 @@ CREATE TABLE type_ski(
    PRIMARY KEY(id_type_ski)
 );
 
+CREATE TABLE type_adresse(
+    id_type_adresse INT AUTO_INCREMENT,
+    libelle_type_adresse varchar(255),
+    PRIMARY KEY(id_type_adresse)
+);
+
+
 CREATE TABLE user(
     id_user INT AUTO_INCREMENT,
     username VARCHAR(50),
@@ -43,7 +50,9 @@ CREATE TABLE user(
     role VARCHAR(50),
     est_actif tinyint(1),
     email VARCHAR(50),
-    PRIMARY KEY(id_user)
+    type_adresse_id INT,
+    PRIMARY KEY(id_user),
+    CONSTRAINT fk_user_type_adresse FOREIGN KEY(type_adresse_id) REFERENCES type_adresse(id_type_adresse)
 );
 
 CREATE TABLE region(
@@ -52,21 +61,17 @@ CREATE TABLE region(
     PRIMARY KEY(id_region)
 );
 
-CREATE TABLE type_adresse(
-    id_type_adresse INT AUTO_INCREMENT,
-    libelle_type_adresse varchar(255),
-    PRIMARY KEY(id_type_adresse)
-);
 
 CREATE TABLE adresse(
     id_adresse INT AUTO_INCREMENT,
     libelle_adresse varchar(255),
     type_adresse_id INT,
-    region varchar(255),
+    region_id INT,
     user_id INT,
     PRIMARY KEY(id_adresse),
     CONSTRAINT fk_adresse_user FOREIGN KEY (user_id) REFERENCES user (id_user),
-    CONSTRAINT fk_adresse_type_adresse FOREIGN KEY(type_adresse_id) REFERENCES type_adresse(id_type_adresse)
+    CONSTRAINT fk_adresse_type_adresse FOREIGN KEY(type_adresse_id) REFERENCES type_adresse(id_type_adresse),
+    CONSTRAINT fk_adresse_region FOREIGN KEY (region_id) REFERENCES region(id_region)
 );
 
 CREATE TABLE ski(
@@ -84,7 +89,7 @@ CREATE TABLE ski(
    CONSTRAINT fk_ski_fournisseur FOREIGN KEY (fournisseur_id) REFERENCES fournisseur (id_fournisseur)
 );
 
-CREATE TABLE IF NOT EXISTS avis(
+CREATE TABLE avis(
     id_avis INT NOT NULL AUTO_INCREMENT,
     commentaire  varchar(500),
     note NUMERIC(2,1),
