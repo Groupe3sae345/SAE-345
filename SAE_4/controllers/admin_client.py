@@ -40,7 +40,7 @@ def admin_client_edit(id):
 
 @admin_client.route('/admin/client/edit', methods=['POST'])
 def valid_edit_client():
-    id = request.args.get('id', '')
+    id = request.form.get('id', '')
     adresse = request.form.get('adresse', '')
     region = request.form.get('region', '')
     type = request.form.get('type', '')
