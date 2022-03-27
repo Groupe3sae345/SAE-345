@@ -9,23 +9,24 @@ client_commentaire = Blueprint('client_commentaire', __name__,
                         template_folder='templates')
 
 @client_commentaire.route('/client/comment/add', methods=['GET'])
+#@client_commentaire.route('/client/comment/add/<int:id>', methods=['GET'])
 def add_commentaire():
     mycursor = get_db().cursor()
     sql='''SELECT * FROM avis'''
     mycursor.execute(sql)
-    region = mycursor.fetchall()
-    return render_template('client/boutique/add_commentaire.html', region=region)
+    #mycursor.execute(sql, (id))
+    return render_template('client/boutique/add_commentaire.html')
 
 @client_commentaire.route('/client/comment/add', methods=['POST'])
 def client_comment_add():
     mycursor = get_db().cursor()
     article_id = '6'
+    #article_id = request.form.get('id', '')
     user_id = session["user_id"]
     commentaire = request.form.get('commentaire', '')
     note = request.form.get('note', '')
     tuple_insert = (article_id, user_id, commentaire, note)
-    mycursor = get_db().cursor()
-    sql = '''INSERT INTO avis(ski_id, user_id,commentaire,note) VALUES (%s, %s, %s, %s); '''
+    sql = '''INSERT INTO avis(ski_id,user_id,commentaire,note) VALUES (%s, %s, %s, %s); '''
     mycursor.execute(sql, tuple_insert)
     get_db().commit()
     print(u'commentaire ajouté')
