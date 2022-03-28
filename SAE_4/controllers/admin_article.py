@@ -119,7 +119,14 @@ def admin_article_commentaire(id):
 @admin_article.route('/admin/article/commentaire/delete', methods=['POST'])
 def admin_comment_detete():
     mycursor = get_db().cursor()
-    article_id = request.form.get('idArticle', None)
+    commentaire_id = request.form.get('id', '')
+    #commentaire_id = '12'
+    sql = "SELECT COUNT(id_avis) as nb_comment FROM avis;"
+    mycursor.execute(sql)
+    sql = "DELETE FROM avis WHERE id_avis = %s;"
+    mycursor.execute(sql, commentaire_id)
+    get_db().commit()
+    return redirect('/admin/article/show')
 
-    return redirect('/admin/article/show/')
+    #return redirect('/admin/article/show/')
     #return redirect(url_for('client_article_details', id=int(article_id)))

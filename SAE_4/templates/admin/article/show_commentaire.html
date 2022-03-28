@@ -40,7 +40,7 @@
                         {{ commentaire.__dict__ }}
                         </td>
                         <td>
-                            <form  action="/admin/commentaire/delete"  style="display: inline-block;"  method="post" >
+                            <form  action="/admin/article/commentaire/delete"  style="display: inline-block;"  method="post" >
                                 <input type="hidden" name="idArticle" value="{{ commentaire.article_id }}">
                                 <input type="hidden" name="idUser" value="{{ commentaire.user_id }}">
                                 <input type="hidden" name="idAvis" value="{{ commentaire.id }}">
