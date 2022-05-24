@@ -1,5 +1,5 @@
 INSERT INTO fabricant VALUES
-(1,'Rossignol'), 
+(1,'Rossignol'),
 (2,'Head'),
 (3,'Fischer'),
 (4,'Salomon'),
@@ -22,7 +22,7 @@ INSERT INTO type_ski VALUES
 (1,'Mini ski'),
 (2,'Ski polyvalent'),
 (3,'Ski freeride'),
-(4,'Ski freestyle')
+(4,'Ski freestyle'),
 (5,'Ski de randonnée'),
 (6,'Ski de piste'),
 (7,'Ski alpin'),
@@ -72,7 +72,7 @@ INSERT INTO ski VALUES
 (11,1,100,149.99,5,'mini_ski.jpg',2,2),
 (12,2,186,247.99,3,'ski_polyvalent.jpg',2,2),
 (13,7,165,178.99,2,'ski_alpin.jpg',2,1),
-(14,6,150,279.99,6,'ski_piste.jpg',5,2,)
+(14,6,150,279.99,6,'ski_piste.jpg',5,2),
 (15,2,183,224.99,2,'ski_polyvalent.jpg',1,3),
 (16,3,168,234.99,2,'ski_freeride.jpg',5,4),
 (17,6,158,189.99,4,'ski_piste.jpg',1,1),
